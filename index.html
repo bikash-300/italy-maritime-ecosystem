@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Italy Maritime Ecosystem — Blue Economy Map</title>
+  <meta name="description" content="Comprehensive mapping of Italy's maritime ecosystem across 9 major port cities." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --navy:#0d1b3e;--navy2:#162447;--navy3:#1e3a6e;
+      --blue:#1a6faf;--blue2:#2589d0;
+      --red:#ce2b37;--green:#009246;
+      --gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;
+      --gray-300:#cbd5e1;--gray-500:#64748b;--gray-700:#334155;--gray-900:#0f172a;
+      --c1:#0d3b72;--c2:#1d6fa4;--c3:#6d28d9;--c4:#b45309;--c5:#047857;
+      --c6:#0e7490;--c7:#0f766e;--c8:#7c3aed;--c9:#991b1b;--c10:#166534;
+      --radius:12px;
+      --shadow:0 1px 3px rgba(0,0,0,.07),0 4px 16px rgba(0,0,0,.06);
+      --shadow-h:0 4px 20px rgba(0,0,0,.13),0 8px 32px rgba(0,0,0,.09);
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--gray-50);color:var(--gray-900);line-height:1.6;min-height:100vh}
+
+    /* HEADER */
+    header{position:sticky;top:0;z-index:100;background:rgba(13,27,62,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08);padding:0 24px}
+    .hdr{max-width:1440px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+    .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .flag{display:flex;width:28px;height:20px;border-radius:3px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.4)}
+    .flag span{flex:1}
+    .fg{background:#009246}.fw{background:#fff}.fr{background:#ce2b37}
+    .logo-text{color:#fff;font-size:15px;font-weight:700;letter-spacing:-.3px}
+    .logo-text em{color:#93c5fd;font-style:normal}
+    .hdr-badge{background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:11px;font-weight:500;padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,.12)}
+
+    /* HERO */
+    .hero{background:linear-gradient(135deg,#0d1b3e 0%,#0a2954 40%,#0d3b6e 70%,#0e4d8a 100%);position:relative;overflow:hidden;padding:72px 24px 80px}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 80% 20%,rgba(41,121,200,.18) 0%,transparent 60%),radial-gradient(ellipse 40% 50% at 20% 80%,rgba(0,146,70,.12) 0%,transparent 60%)}
+    .hero-waves{position:absolute;bottom:0;left:0;right:0;height:80px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 80'%3E%3Cpath d='M0,40 C200,80 400,0 600,40 C800,80 1000,0 1200,40 L1200,80 L0,80 Z' fill='%23f8fafc'/%3E%3C/svg%3E") no-repeat bottom/cover}
+    .hi{max-width:1440px;margin:0 auto;position:relative}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.85);font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:20px;margin-bottom:20px}
+    .edot{width:6px;height:6px;background:#4ade80;border-radius:50%;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.85)}}
+    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,56px);font-weight:800;color:#fff;line-height:1.1;margin-bottom:18px;max-width:700px}
+    .hero h1 em{font-style:italic;color:#93c5fd}
+    .hero-sub{font-size:16px;color:rgba(255,255,255,.7);max-width:540px;line-height:1.7;margin-bottom:36px}
+    .stats-row{display:flex;flex-wrap:wrap;gap:14px}
+    .sc{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 22px;min-width:110px;backdrop-filter:blur(8px)}
+    .sn{font-size:34px;font-weight:800;color:#fff;line-height:1;font-variant-numeric:tabular-nums}
+    .sl{font-size:11px;font-weight:600;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.8px;margin-top:4px}
+    .italy-stripe{position:absolute;top:0;right:0;height:100%;width:5px;background:linear-gradient(to bottom,#009246 33.33%,#fff 33.33% 66.66%,#ce2b37 66.66%)}
+
+    /* TABS */
+    .tabs-bar{background:#fff;border-bottom:1px solid var(--gray-200);padding:0 24px;position:sticky;top:64px;z-index:91;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+    .tabs-inner{max-width:1440px;margin:0 auto;display:flex;gap:0}
+    .tab-btn{padding:16px 24px;font-size:14px;font-weight:600;font-family:inherit;border:none;background:none;cursor:pointer;color:var(--gray-500);border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap}
+    .tab-btn:hover{color:var(--gray-900)}
+    .tab-btn.active{color:var(--navy);border-bottom-color:var(--navy)}
+    .tab-count{background:var(--gray-100);color:var(--gray-500);font-size:11px;font-weight:700;padding:2px 7px;border-radius:20px;margin-left:6px}
+    .tab-btn.active .tab-count{background:var(--navy);color:#fff}
+
+    /* FILTERS */
+    .filters-section{background:#fff;border-bottom:1px solid var(--gray-200);padding:18px 24px;position:sticky;top:113px;z-index:90;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+    .fi{max-width:1440px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+    .frow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .flabel{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--gray-500);white-space:nowrap}
+    .search-wrap{position:relative;flex:1;min-width:180px;max-width:320px}
+    .search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--gray-500);pointer-events:none}
+    #searchInput{width:100%;padding:9px 12px 9px 36px;border:1.5px solid var(--gray-200);border-radius:8px;font-size:14px;font-family:inherit;color:var(--gray-900);background:var(--gray-50);outline:none;transition:border-color .2s,box-shadow .2s}
+    #searchInput:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,111,175,.12);background:#fff}
+    .city-filters{display:flex;gap:7px;flex-wrap:wrap}
+    .fbtn{padding:6px 13px;border:1.5px solid var(--gray-200);border-radius:20px;font-size:13px;font-weight:500;font-family:inherit;cursor:pointer;background:#fff;color:var(--gray-700);transition:all .18s;white-space:nowrap}
+    .fbtn:hover{border-color:var(--navy3);color:var(--navy)}
+    .fbtn.active{background:var(--navy);border-color:var(--navy);color:#fff}
+    .sfbtn{padding:5px 11px;border:1.5px solid var(--gray-200);border-radius:20px;font-size:12px;font-weight:500;font-family:inherit;cursor:pointer;background:#fff;color:var(--gray-700);transition:all .18s;white-space:nowrap}
+    .sfbtn:hover{opacity:.85}
+    .sfbtn.active{color:#fff!important}
+
+    /* RESULTS */
+    .results-bar{max-width:1440px;margin:0 auto;padding:14px 24px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+    .rc{font-size:14px;color:var(--gray-500)}
+    .rc strong{color:var(--gray-900);font-weight:700}
+    .clear-btn{font-size:13px;color:var(--blue);cursor:pointer;background:none;border:none;font-family:inherit;font-weight:500;display:none}
+    .clear-btn:hover{text-decoration:underline}
+    .clear-btn.vis{display:block}
+
+    /* GRID */
+    .main{max-width:1440px;margin:0 auto;padding:28px 24px 60px}
+    .city-group{margin-bottom:48px}
+    .cgh{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid var(--gray-200)}
+    .cgdot{width:14px;height:14px;background:var(--navy);border-radius:50%;flex-shrink:0}
+    .cgtitle{font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.5px}
+    .cgcount{font-size:12px;font-weight:600;color:var(--gray-500);background:var(--gray-100);padding:3px 10px;border-radius:20px}
+    .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px}
+
+    /* ORG CARD */
+    .card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--gray-200);padding:18px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .2s,transform .2s;position:relative;overflow:hidden;animation:fadeUp .3s ease both}
+    .card:hover{box-shadow:var(--shadow-h);transform:translateY(-2px)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    .card-hdr{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+    .card-name{font-size:14px;font-weight:700;color:var(--gray-900);line-height:1.35;flex:1}
+    .card-icon{font-size:20px;flex-shrink:0;line-height:1}
+    .card-badges{display:flex;gap:6px;flex-wrap:wrap}
+    .badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:3px 8px;border-radius:4px;color:#fff}
+    .badge-city{background:var(--gray-700)}
+    .card-desc{font-size:12.5px;color:var(--gray-500);line-height:1.6}
+    .card-divider{height:1px;background:var(--gray-100)}
+    /* Contact row on org card */
+    .card-contact{display:flex;align-items:flex-start;gap:10px;padding-top:4px}
+    .ca{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0;opacity:.9}
+    .contact-body{flex:1;min-width:0}
+    .contact-name{font-size:12px;font-weight:700;color:var(--gray-900);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .contact-title{font-size:11px;color:var(--gray-500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:5px}
+    .contact-links{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .clink{font-size:11px;color:var(--blue);text-decoration:none;display:flex;align-items:center;gap:3px;white-space:nowrap}
+    .clink:hover{text-decoration:underline}
+    .card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:8px;border-top:1px solid var(--gray-100)}
+    .cf-web{font-size:11px;color:var(--blue);text-decoration:none;font-weight:500}
+    .cf-web:hover{text-decoration:underline}
+    .cf-yr{font-size:11px;color:var(--gray-500)}
+
+    /* PEOPLE GRID */
+    .people-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+    .pcard{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--gray-200);padding:20px;display:flex;flex-direction:column;gap:12px;transition:box-shadow .2s,transform .2s;animation:fadeUp .3s ease both}
+    .pcard:hover{box-shadow:var(--shadow-h);transform:translateY(-2px)}
+    .pcard-top{display:flex;align-items:flex-start;gap:14px}
+    .pavatar{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;flex-shrink:0}
+    .pcard-info{flex:1;min-width:0}
+    .pname{font-size:15px;font-weight:700;color:var(--gray-900);line-height:1.3}
+    .ptitle{font-size:12px;color:var(--gray-500);margin-top:2px;line-height:1.4}
+    .porg{font-size:12px;font-weight:600;color:var(--navy);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .pcard-badges{display:flex;gap:6px;flex-wrap:wrap}
+    .pcard-contacts{display:flex;flex-direction:column;gap:6px}
+    .pc-row{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--gray-700)}
+    .pc-row a{color:var(--blue);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .pc-row a:hover{text-decoration:underline}
+    .pc-icon{font-size:13px;flex-shrink:0;width:18px;text-align:center}
+
+    /* EMPTY */
+    .empty{text-align:center;padding:60px 24px;color:var(--gray-500)}
+    .empty h3{font-size:18px;color:var(--gray-700);margin-bottom:8px}
+    .empty p{font-size:14px}
+
+    /* FOOTER */
+    footer{background:var(--navy);color:rgba(255,255,255,.6);padding:40px 24px;text-align:center}
+    .footer-inner{max-width:1440px;margin:0 auto}
+    .ft{color:#fff;font-size:16px;font-weight:700;margin-bottom:8px}
+    .fs{font-size:13px;line-height:1.8}
+    .fdiv{height:1px;background:rgba(255,255,255,.1);margin:20px 0}
+    .fn{font-size:12px}
+    .fflag{display:inline-flex;gap:2px;margin-bottom:14px}
+    .fflag span{width:8px;height:24px;border-radius:1px}
+
+    @media(max-width:768px){
+      .hero{padding:48px 16px 56px}
+      .filters-section{padding:14px 16px}
+      .main{padding:20px 16px 40px}
+      .hdr-badge{display:none}
+      .tabs-bar{padding:0 16px}
+    }
+    .hidden{display:none!important}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <a href="#" class="logo">
+      <div class="flag"><span class="fg"></span><span class="fw"></span><span class="fr"></span></div>
+      <span class="logo-text">Italy <em>Maritime</em> Ecosystem</span>
+    </a>
+    <span class="hdr-badge">🌊 Blue Economy Map 2024</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hi">
+    <div class="eyebrow"><span class="edot"></span>Live Ecosystem Map</div>
+    <h1>Italy's <em>Maritime</em><br>Ecosystem</h1>
+    <p class="hero-sub">Mapping the players shaping Italy's blue economy — from historic port authorities to global shipping leaders, shipbuilders, offshore energy pioneers, and maritime innovators.</p>
+    <div class="stats-row">
+      <div class="sc"><div class="sn" id="statOrgs">0</div><div class="sl">Organisations</div></div>
+      <div class="sc"><div class="sn">9</div><div class="sl">Port Cities</div></div>
+      <div class="sc"><div class="sn">10</div><div class="sl">Sectors</div></div>
+      <div class="sc"><div class="sn" id="statPeople">0</div><div class="sl">Key Contacts</div></div>
+    </div>
+  </div>
+  <div class="hero-waves"></div>
+  <div class="italy-stripe"></div>
+</section>
+
+<div class="tabs-bar">
+  <div class="tabs-inner">
+    <button class="tab-btn active" onclick="setTab('orgs')">🏢 Organisations <span class="tab-count" id="tcOrgs">—</span></button>
+    <button class="tab-btn" onclick="setTab('people')">👤 People to Meet <span class="tab-count" id="tcPeople">—</span></button>
+  </div>
+</div>
+
+<div class="filters-section">
+  <div class="fi">
+    <div class="frow">
+      <span class="flabel">Search</span>
+      <div class="search-wrap">
+        <svg class="search-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input id="searchInput" type="text" placeholder="Search organisations, people…" autocomplete="off"/>
+      </div>
+      <span class="flabel" style="margin-left:6px">City</span>
+      <div class="city-filters" id="cityFilters">
+        <button class="fbtn active" data-city="all">All Cities</button>
+        <button class="fbtn" data-city="Ancona">Ancona</button>
+        <button class="fbtn" data-city="Bari">Bari</button>
+        <button class="fbtn" data-city="Genoa">Genoa</button>
+        <button class="fbtn" data-city="Livorno">Livorno</button>
+        <button class="fbtn" data-city="Naples">Naples</button>
+        <button class="fbtn" data-city="Ravenna">Ravenna</button>
+        <button class="fbtn" data-city="Taranto">Taranto</button>
+        <button class="fbtn" data-city="Trieste">Trieste</button>
+        <button class="fbtn" data-city="Venice">Venice</button>
+      </div>
+    </div>
+    <div class="frow" id="sectorFilterRow">
+      <span class="flabel">Sector</span>
+      <div class="city-filters" id="sectorFilters"></div>
+    </div>
+  </div>
+</div>
+
+<div class="results-bar">
+  <p class="rc" id="resultsCount"><strong>—</strong></p>
+  <button class="clear-btn" id="clearBtn" onclick="clearFilters()">✕ Clear filters</button>
+</div>
+
+<main class="main" id="mainGrid"></main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="fflag"><span style="background:#009246"></span><span style="background:#fff"></span><span style="background:#ce2b37"></span></div>
+    <p class="ft">Italy Maritime Ecosystem</p>
+    <p class="fs">Mapping Italy's blue economy across 9 major port cities.<br>Data compiled from public sources. For informational purposes only.</p>
+    <div class="fdiv"></div>
+    <p class="fn">Ancona · Bari · Genoa · Livorno · Naples · Ravenna · Taranto · Trieste · Venice</p>
+  </div>
+</footer>
+
+<script>
+// ── SECTORS (max 10) ────────────────────────────────────────────────────────
+const SECTORS = {
+  "Port Authority":          {color:"#0d3b72", icon:"🏛"},
+  "Shipping & Ferries":      {color:"#1d6fa4", icon:"🚢"},
+  "Shipbuilding & Repair":   {color:"#6d28d9", icon:"⚙️"},
+  "Logistics & Freight":     {color:"#b45309", icon:"📦"},
+  "Cruise & Passenger":      {color:"#047857", icon:"🛳"},
+  "Maritime Services":       {color:"#0e7490", icon:"⚓"},
+  "Technology & Innovation": {color:"#0f766e", icon:"💡"},
+  "Finance & Investment":    {color:"#7c3aed", icon:"💼"},
+  "Research & Academia":     {color:"#991b1b", icon:"🔬"},
+  "Energy & Offshore":       {color:"#166534", icon:"⚡"},
+};
+
+const CITIES = ["Ancona","Bari","Genoa","Livorno","Naples","Ravenna","Taranto","Trieste","Venice"];
+const CITY_COLORS = {Ancona:"#1d4ed8",Bari:"#7c3aed",Genoa:"#c2410c",Livorno:"#0f766e",Naples:"#b91c1c",Ravenna:"#1e40af",Taranto:"#065f46",Trieste:"#6d28d9",Venice:"#92400e"};
+
+function s(cat){return SECTORS[cat]||{color:"#475569",icon:"📌"}}
+function initials(name){return name.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase()}
+
+// ── ORGANISATIONS ───────────────────────────────────────────────────────────
+const ORGS = [
+
+// ═══════════════════ ANCONA ═══════════════════
+{name:"AdSP Mare Adriatico Centrale",city:"Ancona",category:"Port Authority",
+ desc:"Governs the ports of Ancona, Falconara, Pesaro, Fano, Senigallia and Civitanova Marche. Italy's main central Adriatic gateway.",
+ web:"porto.ancona.it",founded:1994,
+ contact:{name:"Vincenzo Garofalo",title:"Commissario Straordinario",email:"adspmc@porto.ancona.it",phone:"+39 071 2072801",li:"https://www.linkedin.com/in/vincenzo-garofalo-00422128/"}},
+
+{name:"Ferretti Group / CRN S.p.A.",city:"Ancona",category:"Shipbuilding & Repair",
+ desc:"World leader in luxury and superyacht manufacturing. CRN is the custom superyacht division producing 30–80m+ custom steel/aluminium yachts.",
+ web:"ferretti-group.com",founded:1968,
+ contact:{name:"Alberto Galassi",title:"CEO, Ferretti Group",email:"",phone:"+39 071 2072211",li:"https://www.linkedin.com/in/alberto-galassi-b9781122/"}},
+
+{name:"Cantiere delle Marche",city:"Ancona",category:"Shipbuilding & Repair",
+ desc:"Boutique explorer superyacht builder known for long-range bluewater vessels. One of Italy's most respected designer-builder studios for expedition yachts.",
+ web:"cantieredellemarche.it",founded:2010,
+ contact:{name:"Vasco Buonpensiere",title:"Co-founder & CEO",email:"info@cantieredellemarche.it",phone:"+39 071 2067053",li:"https://www.linkedin.com/in/vasco-buonpensiere-07b47616/"}},
+
+{name:"ISA Yachts / Palumbo Superyachts",city:"Ancona",category:"Shipbuilding & Repair",
+ desc:"Part of Palumbo Group. ISA Yachts builds custom superyachts from 40–80m. Key Adriatic player in the Mediterranean superyacht construction market.",
+ web:"isayachts.com",founded:1985,
+ contact:{name:"Raffaele Palumbo",title:"Group President",email:"info@isayachts.com",phone:"+39 071 2072311",li:""}},
+
+{name:"Grimaldi Lines – Ancona",city:"Ancona",category:"Shipping & Ferries",
+ desc:"Ro-pax ferry operations connecting Ancona with Greece (Patras, Igoumenitsa) and Croatia (Split). Part of Europe's largest ro-ro/ro-pax group.",
+ web:"grimaldi-lines.com",founded:1945,
+ contact:{name:"Emanuele Grimaldi",title:"Managing Director, Group",email:"ancona@grimaldi.napoli.it",phone:"+39 071 2074111",li:""}},
+
+{name:"Jadrolinija – Ancona",city:"Ancona",category:"Shipping & Ferries",
+ desc:"Croatian national ferry company operating Ancona–Split–Stari Grad routes. One of the busiest Adriatic passenger lines with 1M+ passengers/year.",
+ web:"jadrolinija.hr",founded:1947,
+ contact:{name:"Goran Šupraha",title:"CEO",email:"ancona@jadrolinija.hr",phone:"+385 51 211 444",li:""}},
+
+{name:"Leonardo S.p.A.",city:"Ancona",category:"Technology & Innovation",
+ desc:"Global defence and security group with major naval electronics divisions including maritime surveillance systems, sensors, and underwater warfare solutions.",
+ web:"leonardo.com",founded:1948,
+ contact:{name:"Roberto Cingolani",title:"CEO",email:"",phone:"+39 06 32471",li:"https://www.linkedin.com/in/roberto-cingolani/"}},
+
+{name:"Università Politecnica delle Marche",city:"Ancona",category:"Research & Academia",
+ desc:"Polytechnic university with strong marine science, engineering and fisheries programs. Key academic partner for the central Adriatic maritime cluster.",
+ web:"univpm.it",founded:1969,
+ contact:{name:"Gian Luca Gregori",title:"Rector",email:"rettore@univpm.it",phone:"+39 071 2201111",li:"https://www.linkedin.com/in/gian-luca-gregori-0a6b3b29/"}},
+
+{name:"Confindustria Marche",city:"Ancona",category:"Maritime Services",
+ desc:"Regional industrial association representing maritime, shipbuilding, and logistics sectors in Marche. Advocates for port development and blue economy investment.",
+ web:"confindustriamarche.it",founded:1919,
+ contact:{name:"Roberto Cardinali",title:"President",email:"info@confindustriamarche.it",phone:"+39 071 2072911",li:"https://www.linkedin.com/in/roberto-cardinali-marche/"}},
+
+// ═══════════════════ BARI ═══════════════════
+{name:"AdSP Mare Adriatico Meridionale",city:"Bari",category:"Port Authority",
+ desc:"Oversees 6 ports: Bari, Brindisi, Manfredonia, Barletta, Monopoli and Taranto (jointly). Strategic hub for Adriatic–Ionian trade and south Italian cruise market.",
+ web:"adspmam.it",founded:1994,
+ contact:{name:"Francesco Mastro",title:"President",email:"presidente@adspmam.it",phone:"+39 080 5788504",li:""}},
+
+{name:"FAROS – Blue Economy Accelerator",city:"Bari",category:"Technology & Innovation",
+ desc:"CDP Venture Capital's blue economy startup accelerator. Selects and funds early-stage maritime and coastal innovation startups across Italy's Adriatic and Ionian coasts.",
+ web:"cdpventurecapital.it",founded:2022,
+ contact:{name:"Stefano Molino",title:"Head of Accelerators Fund",email:"faros@cdpventurecapital.it",phone:"+39 06 4221111",li:"https://www.linkedin.com/in/stefano-molino-cdp/"}},
+
+{name:"CDP Venture Capital SGR",city:"Bari",category:"Finance & Investment",
+ desc:"Italy's leading deep-tech and blue economy VC fund manager, backed by Cassa Depositi e Prestiti. Manages €2B+ across funds targeting maritime, energy and innovation startups.",
+ web:"cdpventurecapital.it",founded:2020,
+ contact:{name:"Agostino Scornajenchi",title:"CEO & General Director",email:"info@cdpventurecapital.it",phone:"+39 06 4221001",li:"https://www.linkedin.com/in/agostino-scornajenchi-7a26521/"}},
+
+{name:"Invitalia",city:"Bari",category:"Finance & Investment",
+ desc:"Italy's national investment and development agency. Manages ZES Adriatica incentive programs, industrial reconversion grants, and maritime cluster investment schemes.",
+ web:"invitalia.it",founded:1999,
+ contact:{name:"Bernardo Mattarella",title:"CEO",email:"info@invitalia.it",phone:"+39 06 421601",li:"https://www.linkedin.com/in/bernardo-mattarella/"}},
+
+{name:"Grimaldi Lines – Bari",city:"Bari",category:"Shipping & Ferries",
+ desc:"Operates ro-pax services from Bari to Greece and Montenegro. A critical EU-Balkans freight corridor handling cars, trucks and passengers year-round.",
+ web:"grimaldi-lines.com",founded:1945,
+ contact:{name:"Guido Grimaldi",title:"Corporate Short Sea Shipping Director",email:"bari@grimaldi.napoli.it",phone:"+39 080 5219811",li:""}},
+
+{name:"Montenegro Lines",city:"Bari",category:"Shipping & Ferries",
+ desc:"Ferry operator linking Bari with Bar (Montenegro), the only direct maritime link between Italy and Montenegro. Key for trade and tourism traffic.",
+ web:"montenegrolines.net",founded:1993,
+ contact:{name:"Predrag Krstovic",title:"CEO",email:"",phone:"+382 30 311 321",li:""}},
+
+{name:"Università degli Studi di Bari Aldo Moro",city:"Bari",category:"Research & Academia",
+ desc:"Major Southern Italian university with marine biology, coastal engineering, and maritime law departments supporting the Puglia blue economy.",
+ web:"uniba.it",founded:1925,
+ contact:{name:"Stefano Bronzini",title:"Rector",email:"rettore@uniba.it",phone:"+39 080 5714111",li:""}},
+
+{name:"DTA – Distretto Tecnologico Aerospaziale",city:"Bari",category:"Technology & Innovation",
+ desc:"Puglia's aerospace and maritime technology cluster hosting R&D on UAV maritime surveillance, satellite tracking, and coastal monitoring systems.",
+ web:"dtapuglia.it",founded:2007,
+ contact:{name:"Pasquale De Falco",title:"President",email:"info@dtapuglia.it",phone:"+39 080 5220211",li:""}},
+
+{name:"Federagenti Puglia",city:"Bari",category:"Maritime Services",
+ desc:"Regional federation of ship agents and brokers in Puglia representing hundreds of maritime service professionals across Bari, Brindisi and Taranto.",
+ web:"federagenti.it",founded:1945,
+ contact:{name:"Gaetano Cafiero",title:"President",email:"puglia@federagenti.it",phone:"+39 080 5220111",li:""}},
+
+// ═══════════════════ GENOA ═══════════════════
+{name:"AdSP Mar Ligure Occidentale",city:"Genoa",category:"Port Authority",
+ desc:"Italy's largest port authority by throughput. Manages Genoa and Savona-Vado. Italy's top container gateway with 2.6M+ TEU/year and major ro-ro volumes.",
+ web:"portsofgenoa.com",founded:1903,
+ contact:{name:"Matteo Paroli",title:"President",email:"urp@porto.genova.it",phone:"+39 010 2411",li:"https://www.linkedin.com/in/matteo-paroli-0a150858/"}},
+
+{name:"MSC Mediterranean Shipping Company",city:"Genoa",category:"Shipping & Ferries",
+ desc:"World's largest container shipping line. Italian-Swiss family-owned, founded in Sorrento. Operates 700+ vessels globally. Also owns MSC Cruises.",
+ web:"msc.com",founded:1970,
+ contact:{name:"Diego Aponte",title:"President & CEO",email:"",phone:"+41 22 703 8888",li:"https://www.linkedin.com/in/diego-aponte-msc/"}},
+
+{name:"Costa Cruises",city:"Genoa",category:"Cruise & Passenger",
+ desc:"Italy's flagship cruise line and Europe's largest cruise operator. Headquartered in Genoa, part of Carnival Corporation with 26 ships and 3M+ passengers/year.",
+ web:"costacruises.com",founded:1947,
+ contact:{name:"Mario Zanetti",title:"CEO",email:"",phone:"+39 010 5483801",li:"https://www.linkedin.com/in/mario-zanetti-3547a734/"}},
+
+{name:"RINA S.p.A.",city:"Genoa",category:"Maritime Services",
+ desc:"Global classification society and certification body founded in Genoa 1861. Ship classification, marine surveys, and technical services in 70+ countries.",
+ web:"rina.org",founded:1861,
+ contact:{name:"Carlo Luzzatto",title:"CEO & General Manager",email:"",phone:"+39 010 53851",li:"https://www.linkedin.com/in/carlo-luzzatto-b2328b10/"}},
+
+{name:"Fincantieri S.p.A.",city:"Genoa",category:"Shipbuilding & Repair",
+ desc:"Italy's national shipbuilder, one of the world's top three. HQ in Trieste, major Genoa shipyard. World's leading cruise ship constructor. Built 7,000+ vessels.",
+ web:"fincantieri.com",founded:1959,
+ contact:{name:"Pierroberto Folgiero",title:"CEO & Managing Director",email:"investor.relations@fincantieri.it",phone:"+39 040 3193111",li:"https://www.linkedin.com/in/pierroberto-folgiero/"}},
+
+{name:"GNV – Grandi Navi Veloci",city:"Genoa",category:"Shipping & Ferries",
+ desc:"Large cruise-ferry operator connecting Genoa with Sardinia, Sicily, Tunisia and Morocco. Part of MSC Group with a modern fleet of large cruise ferries.",
+ web:"gnv.it",founded:1992,
+ contact:{name:"Matteo Catani",title:"CEO",email:"matteo.catani@gnv.it",phone:"+39 010 2094591",li:"https://www.linkedin.com/in/matteo-catani-720a424/"}},
+
+{name:"Grimaldi Group",city:"Genoa",category:"Shipping & Ferries",
+ desc:"World's largest ro-ro/ro-pax fleet operator. Europe-Africa-Americas routes. Part of Napoli-HQ group with major Genoa ro-ro terminal operations.",
+ web:"grimaldi-group.com",founded:1947,
+ contact:{name:"Emanuele Grimaldi",title:"Managing Director",email:"info@grimaldi.napoli.it",phone:"+39 081 4961111",li:""}},
+
+{name:"Ignazio Messina & C.",city:"Genoa",category:"Shipping & Ferries",
+ desc:"Historic Genoese shipping company specialising in ro-ro and container services across the Mediterranean, Red Sea, East Africa and Far East.",
+ web:"messinaline.it",founded:1924,
+ contact:{name:"Ignazio Messina",title:"CEO",email:"info@messinaline.it",phone:"+39 010 25981",li:""}},
+
+{name:"T. Mariotti / GIN Holding",city:"Genoa",category:"Shipbuilding & Repair",
+ desc:"Prestigious Genoese shipyard specialising in cruise ship refits, new-builds and conversion projects. GIN Holding also covers naval architecture consulting.",
+ web:"mariottiyard.it",founded:1945,
+ contact:{name:"Marco Ghiglione",title:"CEO",email:"info@mariottiyard.it",phone:"+39 010 24081",li:"https://www.linkedin.com/in/marco-ghiglione-14627b4/"}},
+
+{name:"Tankoa Yachts",city:"Genoa",category:"Shipbuilding & Repair",
+ desc:"New-generation superyacht shipyard in Genoa delivering steel and aluminium yachts from 50–90m. Known for innovative design and energy-efficient builds.",
+ web:"tankoa.com",founded:2010,
+ contact:{name:"Vincenzo Poerio",title:"Joint CEO",email:"info@tankoa.com",phone:"+39 010 5421900",li:"https://www.linkedin.com/in/vincenzo-poerio-62334129a/"}},
+
+{name:"Amico & Co.",city:"Genoa",category:"Shipbuilding & Repair",
+ desc:"Leading Genoa ship repair yard handling cruise, naval, and commercial vessels. Provides dry-docking, hull maintenance, and complex refurbishment projects.",
+ web:"amicoship.com",founded:1960,
+ contact:{name:"Luigi Amico",title:"General Manager",email:"info@amicoship.com",phone:"+39 010 5993700",li:""}},
+
+{name:"Fratelli Cosulich",city:"Genoa",category:"Maritime Services",
+ desc:"Leading Italian ship agency, bunkering, and port services group. One of Italy's oldest maritime families; key fuel supply and logistics provider in major ports.",
+ web:"cosulich.com",founded:1857,
+ contact:{name:"Timothy Cosulich",title:"CEO – Marine Fuels",email:"",phone:"+39 010 5462411",li:"https://www.linkedin.com/in/timothy-cosulich-b07a671/"}},
+
+{name:"PSA Italy (PSA Genova Pra' & SECH)",city:"Genoa",category:"Logistics & Freight",
+ desc:"PSA International's Italian operations. Genova Pra' handles 1.7M+ TEU/year. SECH terminal adds additional container capacity in Genoa's port cluster.",
+ web:"psaitaly.com",founded:2000,
+ contact:{name:"Roberto Ferrari",title:"Managing Director",email:"",phone:"+39 010 69961",li:"https://www.linkedin.com/in/roberto-ferrari-4a18b612/"}},
+
+{name:"Gruppo Spinelli",city:"Genoa",category:"Logistics & Freight",
+ desc:"Major Ligurian port logistics and transport group. Runs container handling, road haulage, warehousing, and intermodal services in the Genoa port cluster.",
+ web:"gruppospinelli.com",founded:1960,
+ contact:{name:"Simona Brassesco",title:"Co-CEO",email:"",phone:"+39 010 6041",li:"https://www.linkedin.com/in/simonabrassesco/"}},
+
+{name:"Stazioni Marittime di Genova",city:"Genoa",category:"Cruise & Passenger",
+ desc:"Manages cruise and ferry passenger terminals in Genoa, hosting 800,000+ cruise passengers and 1.5M ferry passengers per year.",
+ web:"stazionimarittimegenova.com",founded:1930,
+ contact:{name:"Edoardo Monzani",title:"President",email:"mail@smge.it",phone:"+39 010 0898335",li:"https://www.linkedin.com/in/edoardo-monzani-781a7b50/"}},
+
+{name:"Maritime Ventures",city:"Genoa",category:"Technology & Innovation",
+ desc:"Maritime-focused startup accelerator and innovation studio in Genoa. Identifies, invests in and develops maritime tech startups across digitalization, green shipping and port innovation.",
+ web:"maritimeventures.it",founded:2018,
+ contact:{name:"Enrico Noseda",title:"CEO & Managing Director",email:"info@maritimeventures.it",phone:"",li:"https://www.linkedin.com/in/enriconoseda/"}},
+
+{name:"START 4.0 – Centro di Competenza",city:"Genoa",category:"Technology & Innovation",
+ desc:"National competence centre for port and maritime digital innovation. Connects industry with research on IoT, AI, digital twins, and cybersecurity for ports.",
+ web:"start4-0.it",founded:2018,
+ contact:{name:"Paola Girdinio",title:"President",email:"info@start4-0.it",phone:"+39 010 3532813",li:"https://www.linkedin.com/in/paola-girdinio-47a10a11/"}},
+
+{name:"Genova Blue District",city:"Genoa",category:"Technology & Innovation",
+ desc:"Innovation hub bringing together maritime startups, corporates, and researchers to accelerate blue economy solutions in Genoa's UNESCO waterfront.",
+ web:"genovabluedistrict.com",founded:2021,
+ contact:{name:"Silvia Pedemonte",title:"Community Manager",email:"bluedistrict@job-centre-srl.it",phone:"+39 010 648 0508",li:"https://www.linkedin.com/in/silvia-pedemonte-15b87356/"}},
+
+{name:"CETENA S.p.A.",city:"Genoa",category:"Technology & Innovation",
+ desc:"Ship design and research centre affiliated with Fincantieri. Develops advanced hull forms, ship energy efficiency, stability analysis, and digital twin models.",
+ web:"cetena.it",founded:1968,
+ contact:{name:"Massimo Debenedetti",title:"CEO",email:"info@cetena.it",phone:"+39 010 5996700",li:"https://www.linkedin.com/in/massimodebenedetti/"}},
+
+{name:"DLTM – Distretto Ligure Tecnologie Marine",city:"Genoa",category:"Technology & Innovation",
+ desc:"Liguria's marine technology cluster connecting SMEs, research bodies and large companies developing underwater robotics, marine sensors and deep-sea tech.",
+ web:"dltm.it",founded:2010,
+ contact:{name:"Giovanni Forcieri",title:"President",email:"info@dltm.it",phone:"+39 0187 562601",li:""}},
+
+{name:"MSC Cruises",city:"Genoa",category:"Cruise & Passenger",
+ desc:"World's largest cruise line (jointly with Royal Caribbean) with deep Genoese roots. Operates 21+ ships. Homeport in Genoa for multiple Mediterranean itineraries.",
+ web:"msccruises.com",founded:1987,
+ contact:{name:"Gianni Onorato",title:"CEO",email:"",phone:"+41 22 707 8888",li:""}},
+
+{name:"Assagenti Genova",city:"Genoa",category:"Maritime Services",
+ desc:"Association of ship agents and ship brokers in Genoa — the oldest and largest such body in Italy. Represents 300+ member companies in port services.",
+ web:"assagenti.it",founded:1904,
+ contact:{name:"Paolo Pessina",title:"President",email:"info@assagenti.it",phone:"+39 010 58981",li:""}},
+
+{name:"CNR-ISMAR Genova",city:"Genoa",category:"Research & Academia",
+ desc:"National Research Council's marine sciences institute, Genoa branch. Conducts research on ocean dynamics, marine ecosystems, and climate-ocean interactions.",
+ web:"ismar.cnr.it",founded:1968,
+ contact:{name:"Stefania Sparnocchia",title:"Director",email:"ismar.genova@cnr.it",phone:"+39 010 6475300",li:"https://www.linkedin.com/in/stefania-sparnocchia/"}},
+
+{name:"Università degli Studi di Genova",city:"Genoa",category:"Research & Academia",
+ desc:"Oldest university in Liguria with leading maritime engineering, naval architecture, and ocean science departments feeding Genoa's maritime industry.",
+ web:"unige.it",founded:1471,
+ contact:{name:"Federico Delfino",title:"Rector",email:"rettore@unige.it",phone:"+39 010 20991",li:"https://www.linkedin.com/in/federico-delfino-53843117/"}},
+
+{name:"Genova Superyacht Hub",city:"Genoa",category:"Maritime Services",
+ desc:"Industry association promoting Genoa as a world-class superyacht hub for construction, repair, refit, charter, and brokerage services.",
+ web:"genoasuperyachthub.com",founded:2019,
+ contact:{name:"Daniela Guarino",title:"Managing Director",email:"info@genoasuperyachthub.com",phone:"+39 010 2463693",li:""}},
+
+{name:"CDP Venture Capital – Genova",city:"Genoa",category:"Finance & Investment",
+ desc:"Key Genoese presence of Italy's national VC. Invests in deep-tech and maritime innovation through the Evolution Fund and co-invests with private VCs.",
+ web:"cdpventurecapital.it",founded:2020,
+ contact:{name:"Lorenzo Franchini",title:"Senior Partner, Co-Head Evolution Fund",email:"",phone:"+39 06 42231",li:"https://www.linkedin.com/in/lorenzo-franchini-433187/"}},
+
+// ═══════════════════ LIVORNO ═══════════════════
+{name:"AdSP Mar Tirreno Settentrionale",city:"Livorno",category:"Port Authority",
+ desc:"Manages ports of Livorno, Piombino, Portoferraio, Rio Marina and Cavo. Livorno is Italy's second-largest container port with 1M+ TEU/year.",
+ web:"porto.livorno.it",founded:1994,
+ contact:{name:"Davide Gariglio",title:"President",email:"info@porto.livorno.it",phone:"+39 0586 239111",li:""}},
+
+{name:"Moby S.p.A.",city:"Livorno",category:"Shipping & Ferries",
+ desc:"Italy's largest ferry operator by fleet size. Connects Livorno with Sardinia (Olbia), Corsica, and Elba. 40+ vessels serving millions of passengers/year.",
+ web:"mobylines.it",founded:1959,
+ contact:{name:"Achille Onorato",title:"President",email:"",phone:"+39 0586 826123",li:"https://www.linkedin.com/in/achille-onorato/"}},
+
+{name:"Corsica Ferries",city:"Livorno",category:"Shipping & Ferries",
+ desc:"Major ferry operator connecting Livorno with Bastia (Corsica), Golfo Aranci (Sardinia), and Toulon. Largest operator on the Corsican routes by volume.",
+ web:"corsica-ferries.it",founded:1968,
+ contact:{name:"Corsica Ferries Operations",title:"General Manager Italy",email:"livorno@corsica-ferries.fr",phone:"+39 0586 881380",li:""}},
+
+{name:"Azimut|Benetti Group",city:"Livorno",category:"Shipbuilding & Repair",
+ desc:"World's #1 superyacht manufacturer by revenue. Benetti (Viareggio/Livorno) builds full-custom steel yachts 30–100m+. Azimut produces series production motor yachts.",
+ web:"benetti.it",founded:1873,
+ contact:{name:"Giovanna Vitelli",title:"Chairman",email:"",phone:"+39 0586 228111",li:"https://www.linkedin.com/in/giovanna-vitelli/"}},
+
+{name:"Enilive – Livorno Biorefinery",city:"Livorno",category:"Energy & Offshore",
+ desc:"ENI's sustainable aviation fuel and renewable diesel biorefinery in Livorno, converting vegetable oils and waste lipids into HVO and SAF using port infrastructure.",
+ web:"enilive.com",founded:2023,
+ contact:{name:"Guido Brusco",title:"CEO",email:"",phone:"+39 0586 220800",li:"https://www.linkedin.com/in/guido-brusco-4b5a5118/"}},
+
+{name:"Fincantieri – Darsena Europa",city:"Livorno",category:"Shipbuilding & Repair",
+ desc:"Fincantieri's strategic Livorno project: the deep-sea Darsena Europa terminal expansion and shipyard upgrade, Italy's most ambitious port infrastructure investment.",
+ web:"fincantieri.com",founded:1959,
+ contact:{name:"Pierroberto Folgiero",title:"CEO & Managing Director",email:"investor.relations@fincantieri.it",phone:"+39 0586 220711",li:"https://www.linkedin.com/in/pierroberto-folgiero/"}},
+
+{name:"Livorno Container Terminal (LCT)",city:"Livorno",category:"Logistics & Freight",
+ desc:"Main container terminal. Handled over 800,000 TEU in 2023. Jointly managed by Contship Italia and terminal partners.",
+ web:"lct.it",founded:1989,
+ contact:{name:"LCT Management",title:"General Manager",email:"info@lct.it",phone:"+39 0586 406111",li:""}},
+
+{name:"Interporto Toscano A. Vespucci",city:"Livorno",category:"Logistics & Freight",
+ desc:"Inland logistics centre connecting the port of Livorno with road and rail networks. Hosts distribution centres for major FMCG, automotive, and retail clients.",
+ web:"interportotoscano.com",founded:1993,
+ contact:{name:"Monica Bellandi",title:"President",email:"info@interportotoscano.com",phone:"+39 0586 940111",li:""}},
+
+{name:"Università di Pisa",city:"Livorno",category:"Research & Academia",
+ desc:"Top-ranked Italian university with the Department of Civil and Industrial Engineering covering naval architecture, marine engineering, and coastal hydrodynamics.",
+ web:"unipi.it",founded:1343,
+ contact:{name:"Riccardo Zucchi",title:"Rector",email:"rettore@unipi.it",phone:"+39 050 2211111",li:""}},
+
+{name:"Scuola Superiore Sant'Anna",city:"Livorno",category:"Research & Academia",
+ desc:"Elite research-only university in Pisa with a strong blue economy innovation track. Runs EU-funded maritime sustainability and coastal governance research programs.",
+ web:"sssup.it",founded:1967,
+ contact:{name:"Sabina Nuti",title:"Rector",email:"rettore@sssup.it",phone:"+39 050 883111",li:"https://www.linkedin.com/in/sabina-nuti/"}},
+
+// ═══════════════════ NAPLES ═══════════════════
+{name:"AdSP Mar Tirreno Centrale",city:"Naples",category:"Port Authority",
+ desc:"Governs ports of Naples, Castellammare di Stabia, Torre Annunziata, Salerno and Pozzuoli. Naples is the busiest cruise port in the Mediterranean.",
+ web:"adsptirrenocentrale.it",founded:1994,
+ contact:{name:"Eliseo Cuccaro",title:"President",email:"presidenza@adsptirrenocentrale.it",phone:"+39 081 2285111",li:"https://www.linkedin.com/in/eliseo-cuccaro-92b090b5/"}},
+
+{name:"Grimaldi Group S.p.A. (HQ)",city:"Naples",category:"Shipping & Ferries",
+ desc:"World's largest ro-ro/ro-pax operator headquartered in Naples. Owns Grimaldi Lines, Finnlines, Atlantic Container Line, and Malta Motorways of the Sea.",
+ web:"grimaldi.napoli.it",founded:1947,
+ contact:{name:"Emanuele Grimaldi",title:"Managing Director",email:"info@grimaldi.napoli.it",phone:"+39 081 4961111",li:""}},
+
+{name:"SNAV",city:"Naples",category:"Shipping & Ferries",
+ desc:"Passenger and vehicle ferry operator. Connects Naples with Aeolian Islands, Pontine Islands, Capri, Palermo, and Ancona. Part of MSC Group.",
+ web:"snav.it",founded:1960,
+ contact:{name:"SNAV Operations",title:"General Manager",email:"napoli@snav.it",phone:"+39 081 4285555",li:""}},
+
+{name:"Caremar",city:"Naples",category:"Shipping & Ferries",
+ desc:"Public service ferry operator providing essential connections between Naples and the Campanian islands (Ischia, Procida, Capri). Subsidised regional lifeline service.",
+ web:"caremar.it",founded:1956,
+ contact:{name:"Caremar Management",title:"Director General",email:"info@caremar.it",phone:"+39 081 5513882",li:""}},
+
+{name:"Medmar Navi",city:"Naples",category:"Shipping & Ferries",
+ desc:"Ro-pax ferry operator servicing the Naples–Ischia route with large vehicle ferries. Key carrier for the Island of Ischia's residents and tourism.",
+ web:"medmarnavi.it",founded:1985,
+ contact:{name:"Medmar Management",title:"CEO",email:"info@medmarnavi.it",phone:"+39 081 3334411",li:""}},
+
+{name:"MSC Cruises – Naples",city:"Naples",category:"Cruise & Passenger",
+ desc:"World's largest cruise line uses Naples as a major Mediterranean homeport. MSC Seashore, MSC Bellissima, and MSC Grandiosa regularly home-port here.",
+ web:"msccruises.com",founded:1987,
+ contact:{name:"Pierfrancesco Vago",title:"Executive Chairman",email:"",phone:"+41 22 707 8888",li:"https://www.linkedin.com/in/pierfrancesco-vago-4b803a150/"}},
+
+{name:"Stazione Marittima di Napoli",city:"Naples",category:"Cruise & Passenger",
+ desc:"Historic passenger terminal complex in Naples port. Handles 1M+ cruise passengers and millions of ferry travellers annually across multiple terminal buildings.",
+ web:"stazionemarittima.it",founded:1936,
+ contact:{name:"Massimo Minieri",title:"CEO",email:"info@stazionemarittima.it",phone:"+39 081 5513961",li:""}},
+
+{name:"CAMED – Cantieri del Mediterraneo",city:"Naples",category:"Shipbuilding & Repair",
+ desc:"Major ship repair and conversion yard in Naples. Handles dry-docking of cruise ships, naval vessels, ferries, and industrial ships up to 350m LOA.",
+ web:"camedspa.it",founded:1976,
+ contact:{name:"Aniello Coppola",title:"President",email:"info@camedspa.it",phone:"+39 081 2285311",li:""}},
+
+{name:"Fincantieri – Castellammare di Stabia",city:"Naples",category:"Shipbuilding & Repair",
+ desc:"Historic Fincantieri shipyard at Castellammare di Stabia specialising in naval vessels for the Italian Navy, Coast Guard, and export clients.",
+ web:"fincantieri.com",founded:1783,
+ contact:{name:"Pierroberto Folgiero",title:"CEO & Managing Director",email:"investor.relations@fincantieri.it",phone:"+39 081 8737111",li:"https://www.linkedin.com/in/pierroberto-folgiero/"}},
+
+{name:"Herobots S.r.l.",city:"Naples",category:"Technology & Innovation",
+ desc:"Deep-tech startup developing underwater autonomous robots for hull inspection, marine infrastructure monitoring, and offshore maintenance. Winner of multiple EU innovation prizes.",
+ web:"herobots.eu",founded:2019,
+ contact:{name:"Alessandro Recchi",title:"CEO & Co-founder",email:"info@herobots.eu",phone:"",li:""}},
+
+{name:"SRM – Studi e Ricerche per il Mezzogiorno",city:"Naples",category:"Research & Academia",
+ desc:"Independent economic research centre focused on Southern Italy's maritime economy, port development, and Mediterranean trade flows. Published annual Mare Nostrum report.",
+ web:"sr-m.it",founded:1987,
+ contact:{name:"Massimo Deandreis",title:"Director General",email:"info@sr-m.it",phone:"+39 081 7913111",li:"https://www.linkedin.com/in/massimo-deandreis/"}},
+
+{name:"Università degli Studi Federico II",city:"Naples",category:"Research & Academia",
+ desc:"One of the world's oldest universities (1224). Strong faculties of engineering, marine biology, and oceanography, including the famous Stazione Zoologica.",
+ web:"unina.it",founded:1224,
+ contact:{name:"Matteo Lorito",title:"Rector",email:"rettore@unina.it",phone:"+39 081 2531111",li:"https://www.linkedin.com/in/matteo-lorito-federico-ii/"}},
+
+{name:"Confitarma",city:"Naples",category:"Maritime Services",
+ desc:"Italian Confederation of Shipowners — the main representative body of Italian shipping companies. Advocates for maritime policy at national and EU levels.",
+ web:"confitarma.it",founded:1901,
+ contact:{name:"Mario Zanetti",title:"President",email:"info@confitarma.it",phone:"+39 06 3236741",li:"https://www.linkedin.com/in/mario-zanetti-3547a734/"}},
+
+// ═══════════════════ RAVENNA ═══════════════════
+{name:"AdSP Mare Adriatico Centro-Settentrionale",city:"Ravenna",category:"Port Authority",
+ desc:"Manages the Port of Ravenna, Italy's most important Adriatic port for bulk cargo and agri-food imports. 26+ km of navigable canals and deep-water expansion underway.",
+ web:"port.ravenna.it",founded:1994,
+ contact:{name:"Francesco Benevolo",title:"President",email:"adsp@port.ravenna.it",phone:"+39 0544 608811",li:"https://www.linkedin.com/in/francescobenevolo/"}},
+
+{name:"SAPIR S.p.A.",city:"Ravenna",category:"Logistics & Freight",
+ desc:"Leading port terminal and logistics operator in Ravenna handling bulk solids, agri-food commodities, containers, and general cargo across multiple quays.",
+ web:"grupposapir.it",founded:1927,
+ contact:{name:"Mauro Peponi",title:"CEO",email:"",phone:"+39 0544 530211",li:""}},
+
+{name:"Rosetti Marino S.p.A.",city:"Ravenna",category:"Shipbuilding & Repair",
+ desc:"Specialised shipyard and offshore engineering company. Builds self-elevating platforms (jack-ups), accommodation barges, and complex offshore vessels for global clients.",
+ web:"rosetti.it",founded:1925,
+ contact:{name:"Stefano Silvestroni",title:"Chairman",email:"rosetti@rosetti.it",phone:"+39 0544 878111",li:"https://www.linkedin.com/in/stefano-silvestroni-70a88614/"}},
+
+{name:"Ferretti Group – Ravenna",city:"Ravenna",category:"Shipbuilding & Repair",
+ desc:"World's leading luxury yacht manufacturer. Key production facilities in Ravenna for Ferretti Yachts, Custom Line, and Pershing brands.",
+ web:"ferrettigroup.com",founded:1968,
+ contact:{name:"Alberto Galassi",title:"CEO",email:"",phone:"+39 071 2072211",li:"https://www.linkedin.com/in/alberto-galassi-b9781122/"}},
+
+{name:"Saipem S.p.A.",city:"Ravenna",category:"Energy & Offshore",
+ desc:"Global leader in offshore engineering, construction, and drilling. HQ'd partly in Ravenna for Adriatic operations. Operates drillships, pipelay vessels, and FPSOs.",
+ web:"saipem.com",founded:1957,
+ contact:{name:"Alessandro Puliti",title:"CEO",email:"",phone:"+39 0544 606411",li:"https://www.linkedin.com/in/alessandro-puliti-saipem/"}},
+
+{name:"Plenitude S.p.A.",city:"Ravenna",category:"Energy & Offshore",
+ desc:"ENI's renewable energy and retail gas subsidiary developing Adriatic offshore wind farms. Italy's first significant offshore wind developer in the northern Adriatic.",
+ web:"plenitude.com",founded:2021,
+ contact:{name:"Stefano Goberti",title:"CEO",email:"",phone:"+39 02 5249111",li:"https://www.linkedin.com/in/stefano-goberti-plenitude/"}},
+
+{name:"ENI – Ravenna Offshore District",city:"Ravenna",category:"Energy & Offshore",
+ desc:"ENI's Adriatic offshore operations centre and Italy's oil & gas capital. ENI operates 100+ offshore platforms in the northern Adriatic sea from this base.",
+ web:"eni.com",founded:1953,
+ contact:{name:"Claudio Descalzi",title:"CEO, Eni S.p.A.",email:"",phone:"+39 0544 606111",li:""}},
+
+{name:"Terminal Container Ravenna (TCR)",city:"Ravenna",category:"Logistics & Freight",
+ desc:"Main container terminal in the port of Ravenna. Processed 220,000+ TEU in 2023, serving as the key Adriatic gateway for Northern Italy's imports.",
+ founded:1993,
+ contact:{name:"TCR Management",title:"General Manager",email:"info@tcravenna.it",phone:"+39 0544 608511",li:""}},
+
+{name:"Interporto della Romagna",city:"Ravenna",category:"Logistics & Freight",
+ desc:"Inland freight hub connecting Ravenna port with the national and European rail network, facilitating intermodal logistics for agri-food and industrial cargo.",
+ web:"interportoromagna.it",founded:1990,
+ contact:{name:"Lino Pirazzini",title:"CEO",email:"info@interportoromagna.it",phone:"+39 0544 869111",li:"https://www.linkedin.com/in/lino-pirazzini/"}},
+
+{name:"OMC Med Energy Conference",city:"Ravenna",category:"Maritime Services",
+ desc:"Europe's leading offshore and marine conference focused on Mediterranean energy. Held biennially in Ravenna, attracting 30,000+ attendees and 1,000+ exhibitors.",
+ web:"omc.it",founded:1990,
+ contact:{name:"Monica Spada",title:"President",email:"",phone:"+39 0544 219418",li:"https://www.linkedin.com/in/monica-spada-7bab389/"}},
+
+// ═══════════════════ TARANTO ═══════════════════
+{name:"AdSP Mar Ionio – Porto di Taranto",city:"Taranto",category:"Port Authority",
+ desc:"Governs Italy's deepest natural harbour (17m draft). Strategic hub for Ionian and Eastern Mediterranean trade. €700M+ port expansion underway.",
+ web:"port.taranto.it",founded:1994,
+ contact:{name:"Giovanni Gugliotti",title:"President",email:"authority@port.taranto.it",phone:"+39 099 4711613",li:"https://www.linkedin.com/in/giovanni-gugliotti-480003176/"}},
+
+{name:"Yilport Taranto Container Terminal",city:"Taranto",category:"Logistics & Freight",
+ desc:"Container terminal in Taranto operated by Turkish group Yilport. Deep-water transshipment hub for the central Mediterranean, capable of handling the largest container vessels.",
+ web:"yilport.com",founded:1998,
+ contact:{name:"Erhan Ciloglu",title:"Vice CEO, Yildirim Group",email:"info@yildirimholding.com",phone:"+90 212 385 5000",li:""}},
+
+{name:"Evergreen Marine – Taranto",city:"Taranto",category:"Shipping & Ferries",
+ desc:"Taiwanese container shipping giant using Taranto as a key Mediterranean transshipment hub. One of the world's top 5 container carriers by fleet capacity.",
+ web:"evergreen-marine.com",founded:1968,
+ contact:{name:"Evergreen Italy",title:"Country Manager",email:"taranto@evergreen.it",phone:"+39 099 4711500",li:""}},
+
+{name:"Renexia – Beleolico Offshore Wind",city:"Taranto",category:"Energy & Offshore",
+ desc:"Italy's first offshore wind farm — the Beleolico floating wind project in Taranto's Mar Grande. 30MW capacity, pioneering Italy's blue energy transition.",
+ web:"renexia.it",founded:2009,
+ contact:{name:"Riccardo Toto",title:"Director General",email:"info@renexia.it",phone:"+39 06 8561411",li:""}},
+
+{name:"Nadara (formerly Renantis)",city:"Taranto",category:"Energy & Offshore",
+ desc:"Floating offshore wind developer planning major projects in the Ionian sea. One of Italy's most active companies in the emerging floating offshore wind sector.",
+ web:"nadara.com",founded:2006,
+ contact:{name:"Enrique Pedrosa",title:"CEO",email:"",phone:"+34 91 500 0300",li:""}},
+
+{name:"Marina Militare – Taranto",city:"Taranto",category:"Maritime Services",
+ desc:"Italy's Navy has its main fleet base (Mar Grande) in Taranto — the Mediterranean's largest military port and homeport of Italy's aircraft carrier Cavour.",
+ web:"marina.difesa.it",founded:1861,
+ contact:{name:"Italian Navy Command",title:"Comandante in Capo",email:"",phone:"+39 099 7753111",li:""}},
+
+{name:"Tecnopolo Mediterraneo per lo Sviluppo Sostenibile",city:"Taranto",category:"Research & Academia",
+ desc:"Interdisciplinary research hub connecting energy, maritime, and environmental science. Focused on Taranto's industrial reconversion and sustainable coastal development.",
+ web:"tecnopolomediterraneo.it",founded:2019,
+ contact:{name:"Pietro Pepe",title:"Director",email:"info@tecnopolomediterraneo.it",phone:"+39 099 4547511",li:""}},
+
+{name:"FAROS – Blue Economy Accelerator (Taranto)",city:"Taranto",category:"Technology & Innovation",
+ desc:"CDP Venture Capital's Taranto node of the FAROS blue economy accelerator. Supports early-stage startups in offshore wind, port innovation and marine technology.",
+ web:"cdpventurecapital.it",founded:2022,
+ contact:{name:"Stefano Molino",title:"Head of Accelerators Fund",email:"faros@cdpventurecapital.it",phone:"+39 06 4221111",li:"https://www.linkedin.com/in/stefano-molino-cdp/"}},
+
+{name:"Confindustria Taranto",city:"Taranto",category:"Maritime Services",
+ desc:"Business association representing industrial and maritime companies in Taranto, including port operators, energy firms, and logistics providers.",
+ web:"confindustriataranto.it",founded:1919,
+ contact:{name:"Salvatore Toma",title:"President",email:"presidenza@confindustriataranto.it",phone:"+39 099 7737111",li:""}},
+
+// ═══════════════════ TRIESTE ═══════════════════
+{name:"AdSP Mar Adriatico Orientale",city:"Trieste",category:"Port Authority",
+ desc:"Manages the Port of Trieste, Italy's largest port by tonnage and a free port since 1719. Direct rail connectivity makes it the gateway to Central Europe.",
+ web:"adspmao.it",founded:1994,
+ contact:{name:"Marco Consalvo",title:"President",email:"info@adspmao.it",phone:"+39 040 6731111",li:"https://www.linkedin.com/in/marco-consalvo-4b660566/"}},
+
+{name:"Fincantieri S.p.A. (Group HQ)",city:"Trieste",category:"Shipbuilding & Repair",
+ desc:"Italy's national shipbuilder, headquartered in Trieste. World's leading cruise ship constructor. 18+ global shipyards. Built for all major cruise lines.",
+ web:"fincantieri.com",founded:1959,
+ contact:{name:"Pierroberto Folgiero",title:"CEO & Managing Director",email:"investor.relations@fincantieri.it",phone:"+39 040 3193111",li:"https://www.linkedin.com/in/pierroberto-folgiero/"}},
+
+{name:"Wärtsilä Italia",city:"Trieste",category:"Technology & Innovation",
+ desc:"Italian arm of Finnish marine technology giant Wärtsilä. Major R&D centre in Trieste for ship propulsion, power systems, decarbonisation, and vessel lifecycle solutions.",
+ web:"wartsila.com",founded:1959,
+ contact:{name:"Gianluca Bertossi",title:"Managing Director, Wärtsilä Italia",email:"info.italy@wartsila.com",phone:"+39 040 3198111",li:"https://www.linkedin.com/in/gianlucabertossi/"}},
+
+{name:"Samer & Co. Shipping",city:"Trieste",category:"Maritime Services",
+ desc:"Historic Trieste ship agency and port logistics group. Provides ship agency, customs brokerage, freight forwarding, and multimodal transport services.",
+ web:"samer.com",founded:1850,
+ contact:{name:"Enrico Samer",title:"President & CEO",email:"info@samer.com",phone:"+39 040 6702711",li:"https://www.linkedin.com/in/enrico-samer-4958521b2/"}},
+
+{name:"Evergreen Italia / Lloyd Triestino",city:"Trieste",category:"Shipping & Ferries",
+ desc:"Historic Italian shipping line (founded 1836) acquired by Taiwan's Evergreen Group. Operates container services from Trieste to global destinations via the TMT terminal.",
+ web:"lloydtriestino.it",founded:1836,
+ contact:{name:"Lloyd Triestino Management",title:"Country Director",email:"info@lloydtriestino.it",phone:"+39 040 3186111",li:""}},
+
+{name:"Assicurazioni Generali S.p.A.",city:"Trieste",category:"Finance & Investment",
+ desc:"One of the world's largest insurance groups, founded in Trieste in 1831. Historically the bedrock of Trieste's maritime economy through marine insurance products.",
+ web:"generali.com",founded:1831,
+ contact:{name:"Philippe Donnet",title:"Group CEO",email:"",phone:"+39 040 671111",li:""}},
+
+{name:"SIOT – Oleodotto Transalpino",city:"Trieste",category:"Energy & Offshore",
+ desc:"Transalpine Pipeline Company. Trieste is the terminus of Europe's largest crude oil pipeline, pumping 40M+ tonnes/year from supertankers to Austria, Germany and beyond.",
+ web:"siot.it",founded:1962,
+ contact:{name:"SIOT Management",title:"CEO",email:"info@siot.it",phone:"+39 040 3182111",li:""}},
+
+{name:"Trieste Marine Terminal (TMT)",city:"Trieste",category:"Logistics & Freight",
+ desc:"Main container terminal in Trieste operated by Evergreen. Handles 750,000+ TEU/year. Directly connected to the European rail network — shortest sea-to-rail distance in Italy.",
+ web:"trieste-marine-terminal.com",founded:1998,
+ contact:{name:"Stefano Selvatici",title:"CEO",email:"segreteria@trieste-marine-terminal.com",phone:"+39 040 3186444",li:"https://www.linkedin.com/in/stefano-selvatici-5572b377/"}},
+
+{name:"ETT S.p.A.",city:"Trieste",category:"Technology & Innovation",
+ desc:"Marine digital technology company developing AI-driven platforms for port management, maritime situational awareness, and interactive training systems.",
+ web:"ettsolutions.com",founded:1992,
+ contact:{name:"Marco Geria",title:"CEO",email:"info@ettsolutions.com",phone:"+39 010 5761111",li:""}},
+
+{name:"IP4FVG – Polo Tecnologico Alto Adriatico",city:"Trieste",category:"Technology & Innovation",
+ desc:"Innovation and technology hub for the Friuli Venezia Giulia region. Hosts maritime tech startups, blue economy R&D centres, and prototyping facilities.",
+ web:"ip4fvg.it",founded:2005,
+ contact:{name:"Enrico Tortul",title:"CEO",email:"info@ip4fvg.it",phone:"+39 0434 228711",li:""}},
+
+{name:"Friulia S.p.A.",city:"Trieste",category:"Finance & Investment",
+ desc:"Friuli Venezia Giulia's regional development and investment finance company. Provides equity, venture debt, and co-investment for maritime, industrial and tech companies.",
+ web:"friulia.it",founded:1966,
+ contact:{name:"Federica Seganti",title:"President & CEO",email:"info@friulia.it",phone:"+39 040 7607611",li:"https://www.linkedin.com/in/federicaseganti/"}},
+
+{name:"OGS – Istituto Nazionale di Oceanografia",city:"Trieste",category:"Research & Academia",
+ desc:"Italy's national institute for oceanography and applied geophysics. Conducts Adriatic and Mediterranean marine ecosystem research with own research vessels.",
+ web:"inogs.it",founded:1953,
+ contact:{name:"Nicola Casagli",title:"President",email:"info@ogs.it",phone:"+39 040 2140111",li:"https://www.linkedin.com/in/nicola-casagli-536998121/"}},
+
+{name:"Università degli Studi di Trieste",city:"Trieste",category:"Research & Academia",
+ desc:"Trieste's main university with departments in marine biology, naval engineering, maritime law, and international trade — feeding the regional maritime industry.",
+ web:"units.it",founded:1924,
+ contact:{name:"Donata Vianelli",title:"Rector",email:"rettore@units.it",phone:"+39 040 5583001",li:"https://www.linkedin.com/in/vianellidonata/"}},
+
+{name:"MIB Trieste School of Management",city:"Trieste",category:"Research & Academia",
+ desc:"International business school in Trieste with a strong maritime business MBA program. Trains executives for Italian and international shipping and port companies.",
+ web:"mib.edu",founded:1988,
+ contact:{name:"Vladimir Nanut",title:"President & CEO",email:"info@mib.edu",phone:"+39 040 9188111",li:""}},
+
+{name:"Trieste Terminal Passeggeri",city:"Trieste",category:"Cruise & Passenger",
+ desc:"Manages cruise and passenger terminal facilities in the Gulf of Trieste. Hosts Adriatic cruises and ferry services with capacity for large cruise vessels.",
+ web:"triesteterminalpasseggeri.it",founded:2001,
+ contact:{name:"Franco Mariani",title:"CEO",email:"info@triesteterminalpasseggeri.it",phone:"+39 040 6731111",li:""}},
+
+{name:"ICTP – International Centre for Theoretical Physics",city:"Trieste",category:"Research & Academia",
+ desc:"UNIDO/UNESCO centre in Trieste fostering advanced scientific research including ocean and climate modelling with direct relevance to maritime safety and forecasting.",
+ web:"ictp.it",founded:1964,
+ contact:{name:"Atish Dabholkar",title:"Director",email:"sci_info@ictp.it",phone:"+39 040 2240111",li:""}},
+
+{name:"SIMEST S.p.A.",city:"Trieste",category:"Finance & Investment",
+ desc:"Italian export credit and international investment support agency (CDP Group). Provides co-financing, equity, and subsidised loans for Italian maritime companies expanding abroad.",
+ web:"simest.it",founded:1991,
+ contact:{name:"Pasquale Salzano",title:"CEO",email:"info@simest.it",phone:"+39 06 6887001",li:""}},
+
+// ═══════════════════ VENICE ═══════════════════
+{name:"AdSP Mare Adriatico Settentrionale",city:"Venice",category:"Port Authority",
+ desc:"Manages ports of Venice and Chioggia. Porto Marghera is one of Italy's largest industrial port zones; passenger terminal is a top Adriatic cruise destination.",
+ web:"port.venice.it",founded:1994,
+ contact:{name:"Matteo Gasparato",title:"President",email:"adspmas@port.venice.it",phone:"+39 041 5334111",li:"https://www.linkedin.com/in/matteo-gasparato-47a354227/"}},
+
+{name:"Venezia Terminal Passeggeri (VTP)",city:"Venice",category:"Cruise & Passenger",
+ desc:"Manages Venice's cruise and ferry passenger terminals at Venice and Marghera. New Marghera cruise pier serving large vessels per 2021 lagoon restrictions.",
+ web:"vtp.it",founded:1998,
+ contact:{name:"Fabrizio Spagna",title:"President & CEO",email:"vtp@vtp.it",phone:"+39 041 5338711",li:"https://www.linkedin.com/in/fabrizio-spagna-1184a51/"}},
+
+{name:"MSC Cruises – Venice",city:"Venice",category:"Cruise & Passenger",
+ desc:"Operates Mediterranean cruises from Venice using the new Marghera terminal. Venice remains one of MSC's most commercially important Mediterranean homeports.",
+ web:"msccruises.com",founded:1987,
+ contact:{name:"Pierfrancesco Vago",title:"Executive Chairman",email:"",phone:"+41 22 707 8888",li:"https://www.linkedin.com/in/pierfrancesco-vago-4b803a150/"}},
+
+{name:"PSA Venice-Vecon",city:"Venice",category:"Logistics & Freight",
+ desc:"PSA International's Venice container terminal in Porto Marghera. Handles 250,000+ TEU/year serving Veneto and North-East Italian import/export markets.",
+ web:"psavenice-vecon.com",founded:1992,
+ contact:{name:"Daniele Marchiori",title:"General Manager",email:"info@psavenice-vecon.com",phone:"+39 041 5098411",li:"https://www.linkedin.com/in/daniele-marchiori-86b20867/"}},
+
+{name:"Enilive – Marghera Biorefinery",city:"Venice",category:"Energy & Offshore",
+ desc:"ENI's flagship green chemistry and bio-refinery in Porto Marghera. Produces sustainable aviation fuel (SAF), HVO renewable diesel, and biochemicals from waste materials.",
+ web:"enilive.com",founded:2014,
+ contact:{name:"Guido Brusco",title:"CEO",email:"",phone:"+39 041 2796111",li:"https://www.linkedin.com/in/guido-brusco-4b5a5118/"}},
+
+{name:"ACTV – Azienda Consorzio Trasporti Veneziano",city:"Venice",category:"Maritime Services",
+ desc:"Venice's public water transport authority, operating the iconic vaporetto fleet across the lagoon and Grand Canal. A unique urban maritime system serving 100M+ journeys/year.",
+ web:"actv.avmspa.it",founded:1978,
+ contact:{name:"Giovanni Seno",title:"CEO",email:"info@actv.it",phone:"+39 041 2722111",li:""}},
+
+{name:"Fincantieri VARD – Venice",city:"Venice",category:"Shipbuilding & Repair",
+ desc:"Specialised shipyard in Porto Marghera building offshore vessels, expedition cruise ships, and research vessels. VARD is Fincantieri's offshore/specialised division.",
+ web:"fincantieri.com",founded:1900,
+ contact:{name:"Pierroberto Folgiero",title:"CEO & Managing Director",email:"investor.relations@fincantieri.it",phone:"+39 040 3193111",li:"https://www.linkedin.com/in/pierroberto-folgiero/"}},
+
+{name:"VeniSIA S.r.l.",city:"Venice",category:"Finance & Investment",
+ desc:"Venice-based venture builder and startup studio focused on blue economy, sustainable tourism, and digital innovation for coastal and lagoon environments.",
+ web:"venisia.com",founded:2019,
+ contact:{name:"Maria Claudia Pignata",title:"Co-founder & CEO",email:"venisia@venisia.com",phone:"+39 041 2348414",li:"https://www.linkedin.com/in/mcpignata/"}},
+
+{name:"Banca Finint",city:"Venice",category:"Finance & Investment",
+ desc:"Venetian investment bank specialising in structured finance, private debt, and project finance for maritime infrastructure, port development, and blue economy ventures.",
+ web:"bancafinint.com",founded:1982,
+ contact:{name:"Fabio Innocenzi",title:"CEO",email:"info@bancafinint.com",phone:"+39 0438 497100",li:"https://www.linkedin.com/in/fabio-innocenzi/"}},
+
+{name:"Bureau Veritas Marine & Offshore",city:"Venice",category:"Maritime Services",
+ desc:"Global classification society with major Italian presence. Provides ship classification, certification, and regulatory compliance services for the northern Adriatic fleet.",
+ web:"bureauveritas.com",founded:1828,
+ contact:{name:"Matthieu de Tugny",title:"EVP Industrials & Commodities",email:"",phone:"+33 1 55 24 70 00",li:"https://www.linkedin.com/in/matthieu-de-tugny/"}},
+
+{name:"CNR-ISMAR Venezia",city:"Venice",category:"Research & Academia",
+ desc:"National Research Council's marine sciences institute in Venice. Conducts research on Venice lagoon dynamics, Adriatic oceanography, and Mediterranean climate change.",
+ web:"ismar.cnr.it",founded:1968,
+ contact:{name:"Fabio Trincardi",title:"Senior Consultant",email:"",phone:"+39 041 2407111",li:"https://www.linkedin.com/in/fabio-trincardi-/"}},
+
+{name:"Università Ca' Foscari Venezia",city:"Venice",category:"Research & Academia",
+ desc:"Prestigious Venice university with strong programs in maritime law, sustainable shipping, international trade, and environmental science for the blue economy.",
+ web:"unive.it",founded:1868,
+ contact:{name:"Tiziana Lippiello",title:"Rector",email:"rettrice@unive.it",phone:"+39 041 2348111",li:"https://www.linkedin.com/in/tiziana-lippiello-09099530/"}},
+
+{name:"MOSE Consortium (Consorzio Venezia Nuova)",city:"Venice",category:"Technology & Innovation",
+ desc:"Consortium behind the MOSE flood barrier — the world's largest movable sea-gate system. 78 mobile floodgates protecting Venice's lagoon from exceptional tides.",
+ web:"mosevenezia.eu",founded:1982,
+ contact:{name:"CVN Management",title:"General Director",email:"info@mosevenezia.eu",phone:"+39 041 2720111",li:""}},
+
+{name:"Venice Lines",city:"Venice",category:"Shipping & Ferries",
+ desc:"High-speed catamaran ferry service connecting Venice with Poreč and Rovinj in Croatia. Popular with tourists exploring the northern Adriatic coastal destinations.",
+ web:"venezialines.com",founded:2003,
+ contact:{name:"Venice Lines Operations",title:"CEO",email:"info@venezialines.com",phone:"+39 041 5422000",li:""}},
+
+]; // end ORGS
+
+// ── PEOPLE TO MEET ──────────────────────────────────────────────────────────
+const PEOPLE = [
+  {name:"Alberto Galassi",title:"CEO",org:"Ferretti Group",city:"Ancona",cat:"Shipbuilding & Repair",email:"",phone:"+39 071 2072211",li:"https://www.linkedin.com/in/alberto-galassi-b9781122/"},
+  {name:"Vincenzo Garofalo",title:"Commissario Straordinario",org:"AdSP Adriatico Centrale",city:"Ancona",cat:"Port Authority",email:"adspmc@porto.ancona.it",phone:"+39 071 2072801",li:"https://www.linkedin.com/in/vincenzo-garofalo-00422128/"},
+  {name:"Vasco Buonpensiere",title:"Co-founder & CEO",org:"Cantiere delle Marche",city:"Ancona",cat:"Shipbuilding & Repair",email:"info@cantieredellemarche.it",phone:"+39 071 2067053",li:"https://www.linkedin.com/in/vasco-buonpensiere-07b47616/"},
+  {name:"Raffaele Palumbo",title:"Group President",org:"ISA Yachts / Palumbo Superyachts",city:"Ancona",cat:"Shipbuilding & Repair",email:"info@isayachts.com",phone:"+39 071 2072311",li:""},
+  {name:"Roberto Cingolani",title:"CEO",org:"Leonardo S.p.A.",city:"Ancona",cat:"Technology & Innovation",email:"",phone:"+39 06 32471",li:"https://www.linkedin.com/in/roberto-cingolani/"},
+  {name:"Gian Luca Gregori",title:"Rector",org:"UNIVPM",city:"Ancona",cat:"Research & Academia",email:"rettore@univpm.it",phone:"+39 071 2201111",li:"https://www.linkedin.com/in/gian-luca-gregori-0a6b3b29/"},
+  {name:"Francesco Mastro",title:"President",org:"AdSP Mare Adriatico Meridionale",city:"Bari",cat:"Port Authority",email:"presidente@adspmam.it",phone:"+39 080 5788504",li:""},
+  {name:"Stefano Molino",title:"Head of Accelerators Fund",org:"FAROS / CDP Venture Capital",city:"Bari",cat:"Technology & Innovation",email:"faros@cdpventurecapital.it",phone:"+39 06 4221111",li:"https://www.linkedin.com/in/stefano-molino-cdp/"},
+  {name:"Agostino Scornajenchi",title:"CEO & General Director",org:"CDP Venture Capital SGR",city:"Bari",cat:"Finance & Investment",email:"info@cdpventurecapital.it",phone:"+39 06 4221001",li:"https://www.linkedin.com/in/agostino-scornajenchi-7a26521/"},
+  {name:"Bernardo Mattarella",title:"CEO",org:"Invitalia S.p.A.",city:"Bari",cat:"Finance & Investment",email:"info@invitalia.it",phone:"+39 06 421601",li:"https://www.linkedin.com/in/bernardo-mattarella/"},
+  {name:"Mario Paolo Mega",title:"Head of Technology & Innovation",org:"AdSP Mare Adriatico Meridionale",city:"Bari",cat:"Port Authority",email:"m.mega@adspmam.it",phone:"+39 080 5788566",li:""},
+  {name:"Carlo Luzzatto",title:"CEO & General Manager",org:"RINA S.p.A.",city:"Genoa",cat:"Maritime Services",email:"",phone:"+39 010 53851",li:"https://www.linkedin.com/in/carlo-luzzatto-b2328b10/"},
+  {name:"Pierroberto Folgiero",title:"CEO & Managing Director",org:"Fincantieri S.p.A.",city:"Genoa",cat:"Shipbuilding & Repair",email:"investor.relations@fincantieri.it",phone:"+39 040 3193111",li:"https://www.linkedin.com/in/pierroberto-folgiero/"},
+  {name:"Mario Zanetti",title:"CEO",org:"Costa Cruises",city:"Genoa",cat:"Cruise & Passenger",email:"",phone:"+39 010 5483801",li:"https://www.linkedin.com/in/mario-zanetti-3547a734/"},
+  {name:"Matteo Catani",title:"CEO",org:"GNV – Grandi Navi Veloci",city:"Genoa",cat:"Shipping & Ferries",email:"matteo.catani@gnv.it",phone:"+39 010 2094591",li:"https://www.linkedin.com/in/matteo-catani-720a424/"},
+  {name:"Matteo Paroli",title:"President",org:"AdSP Mar Ligure Occidentale",city:"Genoa",cat:"Port Authority",email:"urp@porto.genova.it",phone:"+39 010 2411",li:"https://www.linkedin.com/in/matteo-paroli-0a150858/"},
+  {name:"Enrico Noseda",title:"CEO & Managing Director",org:"Maritime Ventures",city:"Genoa",cat:"Technology & Innovation",email:"info@maritimeventures.it",phone:"",li:"https://www.linkedin.com/in/enriconoseda/"},
+  {name:"Marco Ghiglione",title:"CEO",org:"T. Mariotti / GIN Holding",city:"Genoa",cat:"Shipbuilding & Repair",email:"info@mariottiyard.it",phone:"+39 010 24081",li:"https://www.linkedin.com/in/marco-ghiglione-14627b4/"},
+  {name:"Paola Girdinio",title:"President",org:"START 4.0",city:"Genoa",cat:"Technology & Innovation",email:"info@start4-0.it",phone:"+39 010 3532813",li:"https://www.linkedin.com/in/paola-girdinio-47a10a11/"},
+  {name:"Timothy Cosulich",title:"CEO – Marine Fuels",org:"Fratelli Cosulich",city:"Genoa",cat:"Maritime Services",email:"",phone:"+39 010 5462411",li:"https://www.linkedin.com/in/timothy-cosulich-b07a671/"},
+  {name:"Silvia Pedemonte",title:"Community Manager",org:"Genova Blue District",city:"Genoa",cat:"Technology & Innovation",email:"bluedistrict@job-centre-srl.it",phone:"+39 010 648 0508",li:"https://www.linkedin.com/in/silvia-pedemonte-15b87356/"},
+  {name:"Massimo Debenedetti",title:"CEO",org:"CETENA S.p.A.",city:"Genoa",cat:"Technology & Innovation",email:"info@cetena.it",phone:"+39 010 5996700",li:"https://www.linkedin.com/in/massimodebenedetti/"},
+  {name:"Vincenzo Poerio",title:"Joint CEO",org:"Tankoa Yachts",city:"Genoa",cat:"Shipbuilding & Repair",email:"info@tankoa.com",phone:"+39 010 5421900",li:"https://www.linkedin.com/in/vincenzo-poerio-62334129a/"},
+  {name:"Simona Brassesco",title:"Co-CEO",org:"Gruppo Spinelli",city:"Genoa",cat:"Logistics & Freight",email:"",phone:"+39 010 6041",li:"https://www.linkedin.com/in/simonabrassesco/"},
+  {name:"Lorenzo Franchini",title:"Senior Partner",org:"CDP Venture Capital SGR",city:"Genoa",cat:"Finance & Investment",email:"",phone:"+39 06 42231",li:"https://www.linkedin.com/in/lorenzo-franchini-433187/"},
+  {name:"Roberto Ferrari",title:"Managing Director",org:"PSA Italy",city:"Genoa",cat:"Logistics & Freight",email:"",phone:"+39 010 69961",li:"https://www.linkedin.com/in/roberto-ferrari-4a18b612/"},
+  {name:"Edoardo Monzani",title:"President",org:"Stazioni Marittime Genova",city:"Genoa",cat:"Cruise & Passenger",email:"mail@smge.it",phone:"+39 010 0898335",li:"https://www.linkedin.com/in/edoardo-monzani-781a7b50/"},
+  {name:"Achille Onorato",title:"President",org:"Moby S.p.A.",city:"Livorno",cat:"Shipping & Ferries",email:"",phone:"+39 0586 826123",li:"https://www.linkedin.com/in/achille-onorato/"},
+  {name:"Diego Aponte",title:"President & CEO",org:"MSC Mediterranean Shipping Company",city:"Livorno",cat:"Shipping & Ferries",email:"",phone:"+41 22 703 8888",li:"https://www.linkedin.com/in/diego-aponte-msc/"},
+  {name:"Giovanna Vitelli",title:"Chairman",org:"Azimut|Benetti Group",city:"Livorno",cat:"Shipbuilding & Repair",email:"",phone:"+39 0586 228111",li:"https://www.linkedin.com/in/giovanna-vitelli/"},
+  {name:"Davide Gariglio",title:"President",org:"AdSP Mar Tirreno Settentrionale",city:"Livorno",cat:"Port Authority",email:"info@porto.livorno.it",phone:"+39 0586 239111",li:""},
+  {name:"Guido Brusco",title:"CEO",org:"Enilive S.p.A.",city:"Livorno",cat:"Energy & Offshore",email:"",phone:"+39 0586 220800",li:"https://www.linkedin.com/in/guido-brusco-4b5a5118/"},
+  {name:"Eliseo Cuccaro",title:"President",org:"AdSP Mar Tirreno Centrale",city:"Naples",cat:"Port Authority",email:"presidenza@adsptirrenocentrale.it",phone:"+39 081 2285111",li:"https://www.linkedin.com/in/eliseo-cuccaro-92b090b5/"},
+  {name:"Emanuele Grimaldi",title:"Managing Director",org:"Grimaldi Group",city:"Naples",cat:"Shipping & Ferries",email:"info@grimaldi.napoli.it",phone:"+39 081 4961111",li:""},
+  {name:"Gianluca Grimaldi",title:"Chairman",org:"Grimaldi Group",city:"Naples",cat:"Shipping & Ferries",email:"info@grimaldi.napoli.it",phone:"+39 081 4961111",li:""},
+  {name:"Massimo Deandreis",title:"Director General",org:"SRM – Studi e Ricerche per il Mezzogiorno",city:"Naples",cat:"Research & Academia",email:"info@sr-m.it",phone:"+39 081 7913111",li:"https://www.linkedin.com/in/massimo-deandreis/"},
+  {name:"Alessandro Recchi",title:"CEO & Co-founder",org:"Herobots S.r.l.",city:"Naples",cat:"Technology & Innovation",email:"info@herobots.eu",phone:"",li:""},
+  {name:"Aniello Coppola",title:"President",org:"CAMED – Cantieri del Mediterraneo",city:"Naples",cat:"Shipbuilding & Repair",email:"info@camedspa.it",phone:"+39 081 2285311",li:""},
+  {name:"Massimo Minieri",title:"CEO",org:"Stazione Marittima Napoli",city:"Naples",cat:"Cruise & Passenger",email:"info@stazionemarittima.it",phone:"+39 081 5513961",li:""},
+  {name:"Valeria Fascione",title:"Regional Assessor for Innovation",org:"Regione Campania",city:"Naples",cat:"Technology & Innovation",email:"v.fascione@regione.campania.it",phone:"+39 081 7967211",li:"https://www.linkedin.com/in/valeriafascione/"},
+  {name:"Francesco Benevolo",title:"President",org:"AdSP Adriatico Centro-Settentrionale",city:"Ravenna",cat:"Port Authority",email:"adsp@port.ravenna.it",phone:"+39 0544 608811",li:"https://www.linkedin.com/in/francescobenevolo/"},
+  {name:"Alessandro Puliti",title:"CEO",org:"Saipem S.p.A.",city:"Ravenna",cat:"Energy & Offshore",email:"",phone:"+39 0544 606411",li:"https://www.linkedin.com/in/alessandro-puliti-saipem/"},
+  {name:"Stefano Goberti",title:"CEO",org:"Plenitude S.p.A.",city:"Ravenna",cat:"Energy & Offshore",email:"",phone:"+39 02 5249111",li:"https://www.linkedin.com/in/stefano-goberti-plenitude/"},
+  {name:"Stefano Silvestroni",title:"Chairman",org:"Rosetti Marino",city:"Ravenna",cat:"Shipbuilding & Repair",email:"rosetti@rosetti.it",phone:"+39 0544 878111",li:"https://www.linkedin.com/in/stefano-silvestroni-70a88614/"},
+  {name:"Riccardo Sabadini",title:"President",org:"SAPIR S.p.A.",city:"Ravenna",cat:"Logistics & Freight",email:"",phone:"+39 0544 530211",li:""},
+  {name:"Monica Spada",title:"President",org:"OMC Med Energy Conference",city:"Ravenna",cat:"Maritime Services",email:"",phone:"+39 0544 219418",li:"https://www.linkedin.com/in/monica-spada-7bab389/"},
+  {name:"Giovanni Gugliotti",title:"President",org:"AdSP Mar Ionio",city:"Taranto",cat:"Port Authority",email:"authority@port.taranto.it",phone:"+39 099 4711613",li:"https://www.linkedin.com/in/giovanni-gugliotti-480003176/"},
+  {name:"Riccardo Toto",title:"Director General",org:"Renexia S.p.A.",city:"Taranto",cat:"Energy & Offshore",email:"info@renexia.it",phone:"+39 06 8561411",li:""},
+  {name:"Enrique Pedrosa",title:"CEO",org:"Nadara",city:"Taranto",cat:"Energy & Offshore",email:"",phone:"+34 91 500 0300",li:""},
+  {name:"Pietro Pepe",title:"Director",org:"Tecnopolo Mediterraneo",city:"Taranto",cat:"Research & Academia",email:"info@tecnopolomediterraneo.it",phone:"+39 099 4547511",li:""},
+  {name:"Enrico Samer",title:"President & CEO",org:"Samer & Co. Shipping",city:"Trieste",cat:"Maritime Services",email:"info@samer.com",phone:"+39 040 6702711",li:"https://www.linkedin.com/in/enrico-samer-4958521b2/"},
+  {name:"Marco Consalvo",title:"President",org:"AdSP Mar Adriatico Orientale",city:"Trieste",cat:"Port Authority",email:"info@adspmao.it",phone:"+39 040 6731111",li:"https://www.linkedin.com/in/marco-consalvo-4b660566/"},
+  {name:"Gianluca Bertossi",title:"Managing Director",org:"Wärtsilä Italia",city:"Trieste",cat:"Technology & Innovation",email:"info.italy@wartsila.com",phone:"+39 040 3198111",li:"https://www.linkedin.com/in/gianlucabertossi/"},
+  {name:"Stefano Selvatici",title:"CEO",org:"Trieste Marine Terminal",city:"Trieste",cat:"Logistics & Freight",email:"segreteria@trieste-marine-terminal.com",phone:"+39 040 3186444",li:"https://www.linkedin.com/in/stefano-selvatici-5572b377/"},
+  {name:"Federica Seganti",title:"President & CEO",org:"Friulia S.p.A.",city:"Trieste",cat:"Finance & Investment",email:"info@friulia.it",phone:"+39 040 7607611",li:"https://www.linkedin.com/in/federicaseganti/"},
+  {name:"Enrico Tortul",title:"CEO",org:"IP4FVG",city:"Trieste",cat:"Technology & Innovation",email:"info@ip4fvg.it",phone:"+39 0434 228711",li:""},
+  {name:"Nicola Casagli",title:"President",org:"OGS – Istituto Nazionale di Oceanografia",city:"Trieste",cat:"Research & Academia",email:"info@ogs.it",phone:"+39 040 2140111",li:"https://www.linkedin.com/in/nicola-casagli-536998121/"},
+  {name:"Donata Vianelli",title:"Rector",org:"Università di Trieste",city:"Trieste",cat:"Research & Academia",email:"rettore@units.it",phone:"+39 040 5583001",li:"https://www.linkedin.com/in/vianellidonata/"},
+  {name:"Marco Geria",title:"CEO",org:"ETT S.p.A.",city:"Trieste",cat:"Technology & Innovation",email:"info@ettsolutions.com",phone:"+39 010 5761111",li:""},
+  {name:"Matteo Gasparato",title:"President",org:"AdSP Mare Adriatico Settentrionale",city:"Venice",cat:"Port Authority",email:"adspmas@port.venice.it",phone:"+39 041 5334111",li:"https://www.linkedin.com/in/matteo-gasparato-47a354227/"},
+  {name:"Fabrizio Spagna",title:"President & CEO",org:"Venezia Terminal Passeggeri (VTP)",city:"Venice",cat:"Cruise & Passenger",email:"vtp@vtp.it",phone:"+39 041 5338711",li:"https://www.linkedin.com/in/fabrizio-spagna-1184a51/"},
+  {name:"Maria Claudia Pignata",title:"Co-founder & CEO",org:"VeniSIA",city:"Venice",cat:"Finance & Investment",email:"venisia@venisia.com",phone:"+39 041 2348414",li:"https://www.linkedin.com/in/mcpignata/"},
+  {name:"Fabio Innocenzi",title:"CEO",org:"Banca Finint",city:"Venice",cat:"Finance & Investment",email:"info@bancafinint.com",phone:"+39 0438 497100",li:"https://www.linkedin.com/in/fabio-innocenzi/"},
+  {name:"Daniele Marchiori",title:"General Manager",org:"PSA Venice-Vecon",city:"Venice",cat:"Logistics & Freight",email:"info@psavenice-vecon.com",phone:"+39 041 5098411",li:"https://www.linkedin.com/in/daniele-marchiori-86b20867/"},
+  {name:"Pierfrancesco Vago",title:"Executive Chairman",org:"MSC Cruises",city:"Venice",cat:"Cruise & Passenger",email:"",phone:"+41 22 707 8888",li:"https://www.linkedin.com/in/pierfrancesco-vago-4b803a150/"},
+  {name:"Tiziana Lippiello",title:"Rector",org:"Università Ca' Foscari Venezia",city:"Venice",cat:"Research & Academia",email:"rettrice@unive.it",phone:"+39 041 2348111",li:"https://www.linkedin.com/in/tiziana-lippiello-09099530/"},
+  {name:"Massimo Zanon",title:"President",org:"Camera di Commercio Venezia Rovigo",city:"Venice",cat:"Maritime Services",email:"presidenza@ve.camcom.it",phone:"+39 041 2700111",li:"https://www.linkedin.com/in/massimo-zanon-24ba0b1b0/"},
+];
+
+// ── STATE ───────────────────────────────────────────────────────────────────
+let activeTab = 'orgs';
+let activeCity = 'all';
+let activeSector = 'all';
+let searchQ = '';
+
+function setTab(t) {
+  activeTab = t;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.getAttribute('onclick').includes(`'${t}'`)));
+  document.getElementById('sectorFilterRow').style.display = t === 'orgs' ? '' : 'none';
+  activeSector = 'all';
+  document.querySelectorAll('[data-sec]').forEach(b => {
+    b.classList.remove('active');
+    b.style.background = '';
+    b.style.color = SECTORS[b.dataset.sec]?.color || '';
+    b.style.borderColor = SECTORS[b.dataset.sec]?.color || '';
+  });
+  const allS = document.querySelector('[data-sec="all"]');
+  if(allS){ allS.classList.add('active'); allS.style.background=allS.style.borderColor='#0d1b3e'; allS.style.color='#fff'; }
+  render();
+}
+
+function setCity(c) {
+  activeCity = c;
+  document.querySelectorAll('[data-city]').forEach(b => b.classList.toggle('active', b.dataset.city === c));
+  render();
+}
+
+function setSector(sec) {
+  activeSector = sec;
+  document.querySelectorAll('[data-sec]').forEach(b => {
+    const isActive = b.dataset.sec === sec;
+    b.classList.toggle('active', isActive);
+    if(isActive && sec !== 'all'){
+      b.style.background = SECTORS[sec]?.color||'';
+      b.style.borderColor = SECTORS[sec]?.color||'';
+      b.style.color = '#fff';
+    } else if(!isActive && b.dataset.sec !== 'all'){
+      b.style.background='';
+      b.style.color = SECTORS[b.dataset.sec]?.color||'';
+      b.style.borderColor = SECTORS[b.dataset.sec]?.color||'';
+    }
+  });
+  const allS = document.querySelector('[data-sec="all"]');
+  if(allS){
+    if(sec==='all'){allS.style.background=allS.style.borderColor='#0d1b3e';allS.style.color='#fff';}
+    else{allS.style.background=allS.style.borderColor='';allS.style.color='';}
+  }
+  render();
+}
+
+function clearFilters() {
+  activeCity='all'; activeSector='all'; searchQ='';
+  document.getElementById('searchInput').value='';
+  document.querySelectorAll('[data-city]').forEach(b => b.classList.toggle('active', b.dataset.city==='all'));
+  setSector('all');
+  render();
+}
+
+function matchOrg(o) {
+  if(activeCity!=='all' && o.city!==activeCity) return false;
+  if(activeSector!=='all' && o.category!==activeSector) return false;
+  if(searchQ){
+    const q=searchQ.toLowerCase();
+    return o.name.toLowerCase().includes(q)||o.city.toLowerCase().includes(q)||
+           o.category.toLowerCase().includes(q)||(o.desc||'').toLowerCase().includes(q)||
+           (o.contact?.name||'').toLowerCase().includes(q);
+  }
+  return true;
+}
+
+function matchPerson(p) {
+  if(activeCity!=='all' && p.city!==activeCity) return false;
+  if(searchQ){
+    const q=searchQ.toLowerCase();
+    return p.name.toLowerCase().includes(q)||p.org.toLowerCase().includes(q)||
+           p.city.toLowerCase().includes(q)||p.title.toLowerCase().includes(q)||
+           p.cat.toLowerCase().includes(q);
+  }
+  return true;
+}
+
+function avatarColor(name) {
+  const colors=['#1d6fa4','#6d28d9','#047857','#b45309','#0e7490','#0f766e','#7c3aed','#991b1b','#0d3b72','#166534'];
+  let h=0; for(let c of name) h=(h+c.charCodeAt(0))%colors.length;
+  return colors[h];
+}
+
+function makeOrgCard(org, delay) {
+  const sec = SECTORS[org.category]||{color:'#475569',icon:'📌'};
+  const c = org.contact;
+  const card = document.createElement('div');
+  card.className='card';
+  card.style.borderLeft=`4px solid ${sec.color}`;
+  card.style.animationDelay=`${delay*0.04}s`;
+  const av = c ? avatarColor(c.name) : '#64748b';
+  const ini = c ? initials(c.name) : '?';
+  card.innerHTML=`
+    <div class="card-hdr">
+      <div class="card-name">${org.name}</div>
+      <div class="card-icon">${sec.icon}</div>
+    </div>
+    <div class="card-badges">
+      <span class="badge" style="background:${sec.color}">${org.category}</span>
+      <span class="badge badge-city">📍 ${org.city}</span>
+      ${org.founded?`<span class="badge" style="background:#94a3b8">Est. ${org.founded}</span>`:''}
+    </div>
+    <p class="card-desc">${org.desc||''}</p>
+    ${c?`
+    <div class="card-divider"></div>
+    <div class="card-contact">
+      <div class="ca" style="background:${av}">${ini}</div>
+      <div class="contact-body">
+        <div class="contact-name">${c.name}</div>
+        <div class="contact-title">${c.title}</div>
+        <div class="contact-links">
+          ${c.email?`<a class="clink" href="mailto:${c.email}">✉ ${c.email}</a>`:''}
+          ${c.phone?`<span class="clink" style="color:#334155">📞 ${c.phone}</span>`:''}
+          ${c.li?`<a class="clink" href="${c.li}" target="_blank" rel="noopener">🔗 LinkedIn</a>`:''}
+        </div>
+      </div>
+    </div>`:''}
+    ${org.web?`<div class="card-footer"><a class="cf-web" href="https://${org.web}" target="_blank" rel="noopener">🌐 ${org.web}</a></div>`:''}
+  `;
+  return card;
+}
+
+function makePersonCard(p, delay) {
+  const col = CITY_COLORS[p.city]||'#1d4ed8';
+  const secCol = (SECTORS[p.cat]||{}).color||'#475569';
+  const card = document.createElement('div');
+  card.className='pcard';
+  card.style.animationDelay=`${delay*0.04}s`;
+  card.style.borderLeft=`4px solid ${secCol}`;
+  card.innerHTML=`
+    <div class="pcard-top">
+      <div class="pavatar" style="background:${col}">${initials(p.name)}</div>
+      <div class="pcard-info">
+        <div class="pname">${p.name}</div>
+        <div class="ptitle">${p.title}</div>
+        <div class="porg">${p.org}</div>
+      </div>
+    </div>
+    <div class="pcard-badges">
+      <span class="badge" style="background:${secCol}">${p.cat}</span>
+      <span class="badge badge-city">📍 ${p.city}</span>
+    </div>
+    <div class="pcard-contacts">
+      ${p.email?`<div class="pc-row"><span class="pc-icon">✉</span><a href="mailto:${p.email}">${p.email}</a></div>`:''}
+      ${p.phone?`<div class="pc-row"><span class="pc-icon">📞</span><span>${p.phone}</span></div>`:''}
+      ${p.li?`<div class="pc-row"><span class="pc-icon">🔗</span><a href="${p.li}" target="_blank" rel="noopener">LinkedIn Profile</a></div>`:''}
+    </div>
+  `;
+  return card;
+}
+
+function render() {
+  const grid = document.getElementById('mainGrid');
+  const isFiltered = activeCity!=='all' || activeSector!=='all' || searchQ;
+  document.getElementById('clearBtn').classList.toggle('vis', isFiltered);
+
+  if(activeTab==='orgs') {
+    const filtered = ORGS.filter(matchOrg);
+    document.getElementById('resultsCount').innerHTML=`Showing <strong>${filtered.length}</strong> of <strong>${ORGS.length}</strong> organisations`;
+    document.getElementById('tcOrgs').textContent=filtered.length;
+    grid.innerHTML='';
+    if(!filtered.length){
+      grid.innerHTML='<div class="empty"><h3>No results</h3><p>Try adjusting your filters or search terms.</p></div>';return;
+    }
+    const citiesToShow = activeCity==='all' ? CITIES : [activeCity];
+    let idx=0;
+    citiesToShow.forEach(city=>{
+      const cityOrgs=filtered.filter(o=>o.city===city);
+      if(!cityOrgs.length)return;
+      const group=document.createElement('div');
+      group.className='city-group';
+      group.innerHTML=`<div class="cgh"><div class="cgdot"></div><h2 class="cgtitle">${city}</h2><span class="cgcount">${cityOrgs.length} org${cityOrgs.length!==1?'s':''}</span></div>`;
+      const cg=document.createElement('div');cg.className='cards-grid';
+      cityOrgs.forEach(org=>cg.appendChild(makeOrgCard(org,idx++)));
+      group.appendChild(cg);grid.appendChild(group);
+    });
+  } else {
+    const filtered = PEOPLE.filter(matchPerson);
+    document.getElementById('resultsCount').innerHTML=`Showing <strong>${filtered.length}</strong> of <strong>${PEOPLE.length}</strong> key contacts`;
+    document.getElementById('tcPeople').textContent=filtered.length;
+    grid.innerHTML='';
+    if(!filtered.length){
+      grid.innerHTML='<div class="empty"><h3>No results</h3><p>Try adjusting your filters or search terms.</p></div>';return;
+    }
+    // Group people by city when showing all
+    const citiesToShow = activeCity==='all' ? CITIES : [activeCity];
+    let idx=0;
+    citiesToShow.forEach(city=>{
+      const cityPeople=filtered.filter(p=>p.city===city);
+      if(!cityPeople.length)return;
+      const group=document.createElement('div');
+      group.className='city-group';
+      group.innerHTML=`<div class="cgh"><div class="cgdot"></div><h2 class="cgtitle">${city}</h2><span class="cgcount">${cityPeople.length} contact${cityPeople.length!==1?'s':''}</span></div>`;
+      const pg=document.createElement('div');pg.className='people-grid';
+      cityPeople.forEach(p=>pg.appendChild(makePersonCard(p,idx++)));
+      group.appendChild(pg);grid.appendChild(group);
+    });
+  }
+}
+
+function buildSectorFilters() {
+  const wrap = document.getElementById('sectorFilters');
+  wrap.innerHTML='<button class="sfbtn active" data-sec="all" style="background:#0d1b3e;border-color:#0d1b3e;color:#fff" onclick="setSector(\'all\')">All Sectors</button>';
+  Object.entries(SECTORS).forEach(([name,meta])=>{
+    const btn=document.createElement('button');
+    btn.className='sfbtn';
+    btn.dataset.sec=name;
+    btn.style.borderColor=meta.color;
+    btn.style.color=meta.color;
+    btn.innerHTML=`${meta.icon} ${name}`;
+    btn.onclick=()=>setSector(name);
+    wrap.appendChild(btn);
+  });
+}
+
+function animCount(el,target,dur){
+  let n=0; const step=Math.ceil(target/(dur/30));
+  const t=setInterval(()=>{n=Math.min(n+step,target);el.textContent=n;if(n>=target)clearInterval(t);},30);
+}
+
+function init() {
+  document.querySelectorAll('[data-city]').forEach(b=>b.addEventListener('click',()=>setCity(b.dataset.city)));
+  document.getElementById('searchInput').addEventListener('input',e=>{searchQ=e.target.value.trim();render();});
+  buildSectorFilters();
+  animCount(document.getElementById('statOrgs'),ORGS.length,800);
+  animCount(document.getElementById('statPeople'),PEOPLE.length,600);
+  document.getElementById('tcOrgs').textContent=ORGS.length;
+  document.getElementById('tcPeople').textContent=PEOPLE.length;
+  render();
+}
+document.addEventListener('DOMContentLoaded',init);
+</script>
+</body>
+</html>
