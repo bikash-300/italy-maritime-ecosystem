@@ -321,16 +321,17 @@
 <script>
 // ── SECTORS (max 10) ────────────────────────────────────────────────────────
 const SECTORS = {
-  "Port Authority":          {color:"#0d3b72", icon:"🏛"},
-  "Shipping & Ferries":      {color:"#1d6fa4", icon:"🚢"},
-  "Shipbuilding & Repair":   {color:"#6d28d9", icon:"⚙️"},
-  "Logistics & Freight":     {color:"#b45309", icon:"📦"},
-  "Cruise & Passenger":      {color:"#047857", icon:"🛳"},
-  "Maritime Services":       {color:"#0e7490", icon:"⚓"},
-  "Technology & Innovation": {color:"#0f766e", icon:"💡"},
-  "Finance & Investment":    {color:"#7c3aed", icon:"💼"},
-  "Research & Academia":     {color:"#991b1b", icon:"🔬"},
-  "Energy & Offshore":       {color:"#166534", icon:"⚡"},
+  "Port Authority":           {color:"#0d3b72", icon:"🏛"},
+  "Shipping & Ferries":       {color:"#1d6fa4", icon:"🚢"},
+  "Shipbuilding & Repair":    {color:"#6d28d9", icon:"⚙️"},
+  "Logistics & Freight":      {color:"#b45309", icon:"📦"},
+  "Cruise & Passenger":       {color:"#047857", icon:"🛳"},
+  "Maritime Services":        {color:"#0e7490", icon:"⚓"},
+  "Technology & Innovation":  {color:"#0f766e", icon:"💡"},
+  "Finance & Investment":     {color:"#7c3aed", icon:"💼"},
+  "Research & Academia":      {color:"#991b1b", icon:"🔬"},
+  "Energy & Offshore":        {color:"#166534", icon:"⚡"},
+  "Startups & Accelerators":  {color:"#be185d", icon:"🚀"},
 };
 
 const CITIES = ["Ancona","Bari","Genoa","Livorno","Naples","Ravenna","Taranto","Trieste","Venice"];
@@ -394,7 +395,7 @@ const ORGS = [
  web:"adspmam.it",founded:1994,
  contact:{name:"Francesco Mastro",title:"President",email:"presidente@adspmam.it",phone:"+39 080 5788504",li:""}},
 
-{name:"FAROS – Blue Economy Accelerator",city:"Bari",category:"Technology & Innovation",
+{name:"FAROS – Blue Economy Accelerator",city:"Bari",category:"Startups & Accelerators",
  desc:"CDP Venture Capital's blue economy startup accelerator. Selects and funds early-stage maritime and coastal innovation startups across Italy's Adriatic and Ionian coasts.",
  web:"cdpventurecapital.it",founded:2022,
  contact:{name:"Stefano Molino",title:"Head of Accelerators Fund",email:"faros@cdpventurecapital.it",phone:"+39 06 4221111",li:"https://www.linkedin.com/in/stefano-molino-cdp/"}},
@@ -510,7 +511,7 @@ const ORGS = [
  web:"stazionimarittimegenova.com",founded:1930,
  contact:{name:"Edoardo Monzani",title:"President",email:"mail@smge.it",phone:"+39 010 0898335",li:"https://www.linkedin.com/in/edoardo-monzani-781a7b50/"}},
 
-{name:"Maritime Ventures",city:"Genoa",category:"Technology & Innovation",
+{name:"Maritime Ventures",city:"Genoa",category:"Startups & Accelerators",
  desc:"Maritime-focused startup accelerator and innovation studio in Genoa. Identifies, invests in and develops maritime tech startups across digitalization, green shipping and port innovation.",
  web:"maritimeventures.it",founded:2018,
  contact:{name:"Enrico Noseda",title:"CEO & Managing Director",email:"info@maritimeventures.it",phone:"",li:"https://www.linkedin.com/in/enriconoseda/"}},
@@ -520,7 +521,7 @@ const ORGS = [
  web:"start4-0.it",founded:2018,
  contact:{name:"Paola Girdinio",title:"President",email:"info@start4-0.it",phone:"+39 010 3532813",li:"https://www.linkedin.com/in/paola-girdinio-47a10a11/"}},
 
-{name:"Genova Blue District",city:"Genoa",category:"Technology & Innovation",
+{name:"Genova Blue District",city:"Genoa",category:"Startups & Accelerators",
  desc:"Innovation hub bringing together maritime startups, corporates, and researchers to accelerate blue economy solutions in Genoa's UNESCO waterfront.",
  web:"genovabluedistrict.com",founded:2021,
  contact:{name:"Silvia Pedemonte",title:"Community Manager",email:"bluedistrict@job-centre-srl.it",phone:"+39 010 648 0508",li:"https://www.linkedin.com/in/silvia-pedemonte-15b87356/"}},
@@ -662,7 +663,7 @@ const ORGS = [
  web:"fincantieri.com",founded:1783,
  contact:{name:"Pierroberto Folgiero",title:"CEO & Managing Director",email:"investor.relations@fincantieri.it",phone:"+39 081 8737111",li:"https://www.linkedin.com/in/pierroberto-folgiero/"}},
 
-{name:"Herobots S.r.l.",city:"Naples",category:"Technology & Innovation",
+{name:"Herobots S.r.l.",city:"Naples",category:"Startups & Accelerators",
  desc:"Deep-tech startup developing underwater autonomous robots for hull inspection, marine infrastructure monitoring, and offshore maintenance. Winner of multiple EU innovation prizes.",
  web:"herobots.eu",founded:2019,
  contact:{name:"Alessandro Recchi",title:"CEO & Co-founder",email:"info@herobots.eu",phone:"",li:""}},
@@ -901,7 +902,7 @@ const ORGS = [
  web:"fincantieri.com",founded:1900,
  contact:{name:"Pierroberto Folgiero",title:"CEO & Managing Director",email:"investor.relations@fincantieri.it",phone:"+39 040 3193111",li:"https://www.linkedin.com/in/pierroberto-folgiero/"}},
 
-{name:"VeniSIA S.r.l.",city:"Venice",category:"Finance & Investment",
+{name:"VeniSIA S.r.l.",city:"Venice",category:"Startups & Accelerators",
  desc:"Venice-based venture builder and startup studio focused on blue economy, sustainable tourism, and digital innovation for coastal and lagoon environments.",
  web:"venisia.com",founded:2019,
  contact:{name:"Maria Claudia Pignata",title:"Co-founder & CEO",email:"venisia@venisia.com",phone:"+39 041 2348414",li:"https://www.linkedin.com/in/mcpignata/"}},
@@ -937,6 +938,63 @@ const ORGS = [
  contact:{name:"Venice Lines Operations",title:"CEO",email:"info@venezialines.com",phone:"+39 041 5422000",li:""}},
 
 
+// ═══════════════════ ACCELERATORS & INCUBATORS ═══════════════════
+{name:"AREA Science Park",city:"Trieste",category:"Startups & Accelerators",
+ desc:"Italy's largest national science and technology park, headquartered in Trieste. Hosts 90+ research organisations and actively incubates maritime, blue economy and marine-tech startups from the Friuli Venezia Giulia region.",
+ web:"areasciencepark.it",founded:1978,
+ contact:{name:"Sergio Paoletti",title:"President",email:"info@areasciencepark.it",phone:"+39 040 3755111",li:"https://www.linkedin.com/in/sergio-paoletti-b45a4111/"}},
+
+{name:"CLab Bari – Contamination Lab",city:"Bari",category:"Startups & Accelerators",
+ desc:"University of Bari entrepreneurship and innovation lab supporting student and researcher startups in blue economy, maritime technology and coastal sustainability across Puglia.",
+ web:"uniba.it/clab",founded:2017,
+ contact:{name:"CLab Bari Coordinator",title:"Director",email:"clab@uniba.it",phone:"+39 080 5714111",li:""}},
+
+{name:"Polo Tecnologico di Navacchio",city:"Livorno",category:"Startups & Accelerators",
+ desc:"Tuscany's leading technology incubator near Pisa. Hosts deep-tech startups in marine robotics, offshore systems and nautical electronics with direct links to Livorno port and Università di Pisa.",
+ web:"polotecnologico.net",founded:1994,
+ contact:{name:"Lucio Colizzi",title:"President",email:"info@polotecnologico.net",phone:"+39 050 754111",li:""}},
+
+{name:"Campania NewSteel",city:"Naples",category:"Startups & Accelerators",
+ desc:"Campania Region's strategic technology accelerator supporting maritime, logistics and industrial startups in the Naples-Salerno corridor through grants, mentoring and corporate partnerships.",
+ web:"campanianewsteel.it",founded:2019,
+ contact:{name:"Valeria Fascione",title:"Regional Assessor for Innovation",email:"v.fascione@regione.campania.it",phone:"+39 081 7967211",li:"https://www.linkedin.com/in/valeriafascione/"}},
+
+// ═══════════════════ NEW MARITIME STARTUPS ═══════════════════
+{name:"SEASTEMA S.p.A.",city:"Genoa",category:"Startups & Accelerators",
+ desc:"Fincantieri's digital systems company developing AI-powered ship management software, integrated bridge systems and digital twin platforms for naval and commercial vessels.",
+ web:"seastema.com",founded:2014,
+ contact:{name:"SEASTEMA Management",title:"CEO",email:"info@seastema.com",phone:"+39 010 6513600",li:"https://www.linkedin.com/company/seastema/"}},
+
+{name:"Thetis S.p.A.",city:"Venice",category:"Startups & Accelerators",
+ desc:"Venice-based environmental engineering company in Porto Marghera. Develops lagoon and port environmental monitoring systems, underwater survey technologies and ecological assessment services for coastal infrastructure.",
+ web:"thetis.it",founded:1992,
+ contact:{name:"Thetis Management",title:"CEO",email:"info@thetis.it",phone:"+39 041 2478111",li:""}},
+
+{name:"IB Group",city:"Genoa",category:"Startups & Accelerators",
+ desc:"Italian maritime software house developing integrated bridge systems, fleet management platforms and ECDIS for commercial and naval vessels. Products installed on 4,000+ ships worldwide.",
+ web:"ibgroup.it",founded:1997,
+ contact:{name:"Giorgio Ivaldi",title:"CEO",email:"info@ibgroup.it",phone:"+39 010 5760111",li:"https://www.linkedin.com/in/giorgio-ivaldi-ibgroup/"}},
+
+{name:"Bluenovo",city:"Venice",category:"Startups & Accelerators",
+ desc:"Venice-based blue economy startup studio and open innovation platform, co-creating maritime digital solutions with port operators, shipping companies and research institutions in the northern Adriatic.",
+ web:"bluenovo.eu",founded:2020,
+ contact:{name:"Bluenovo Founders",title:"Co-founders",email:"info@bluenovo.eu",phone:"",li:"https://www.linkedin.com/company/bluenovo/"}},
+
+{name:"OceanReef Group",city:"Genoa",category:"Startups & Accelerators",
+ desc:"Genoa-based innovator in underwater communication and diving technology. Makes the Neptune Space full-face masks and radio systems used by coast guards, navies and marine scientists worldwide.",
+ web:"oceanreefgroup.com",founded:1961,
+ contact:{name:"OceanReef Management",title:"CEO",email:"info@oceanreefgroup.com",phone:"+39 010 9861111",li:"https://www.linkedin.com/company/ocean-reef-group/"}},
+
+{name:"Alga.Bio",city:"Taranto",category:"Startups & Accelerators",
+ desc:"Italian biotech startup producing high-value microalgae compounds for blue biotechnology, marine pharmaceutical applications and sustainable aquaculture feed — spun out of CNR marine research.",
+ web:"alga.bio",founded:2021,
+ contact:{name:"Alga.Bio Team",title:"CEO & Co-founder",email:"info@alga.bio",phone:"",li:"https://www.linkedin.com/company/alga-bio/"}},
+
+{name:"DatalogIT",city:"Trieste",category:"Startups & Accelerators",
+ desc:"Trieste maritime data analytics company providing real-time cargo tracking, port logistics intelligence and vessel performance analytics for shipping lines and port operators in the Adriatic region.",
+ web:"datalogit.it",founded:2016,
+ contact:{name:"DatalogIT Team",title:"CEO",email:"info@datalogit.it",phone:"",li:""}},
+
 // ═══════════════════ NEW ORGANISATIONS ═══════════════════
 {name:"YoungShip Italy",city:"Genoa",category:"Maritime Services",
  desc:"National chapter of YoungShip International — professional networking and development for Italy's next generation of maritime leaders. Active chapters across North and South Italy.",
@@ -963,9 +1021,9 @@ const ORGS = [
  web:"federazionedelmare.it",founded:1994,
  contact:{name:"Giorgio Risso",title:"President",email:"info@federazionedelmare.it",phone:"+39 06 3236741",li:"https://www.linkedin.com/in/giorgio-risso-4a15b4a8/"}},
 
-{name:"Cluster BIG – Blue Italian Growth",city:"Naples",category:"Research & Academia",
+{name:"Cluster BIG – Blue Italian Growth",city:"Naples",category:"Startups & Accelerators",
  desc:"Italy's national maritime technology cluster under MIMIT. Connects SMEs, large corporates and research centres developing technology for sea systems, port infrastructure and blue economy services.",
- web:"blueitaliancluster.it",founded:2015,
+ web:"clusterbig.it",founded:2015,
  contact:{name:"Salvatore Sarno",title:"President",email:"info@blueitaliancluster.it",phone:"+39 081 7913511",li:"https://www.linkedin.com/in/salvatore-sarno-b94aa51a/"}},
 
 {name:"Blue Forum Italia",city:"Naples",category:"Maritime Services",
@@ -973,7 +1031,7 @@ const ORGS = [
  web:"blueforum.net",founded:2017,
  contact:{name:"Blue Forum Secretariat",title:"Secretary General",email:"info@blueforum.net",phone:"+39 06 45548250",li:""}},
 
-{name:"Fabbrica Italiana dell'Innovazione",city:"Naples",category:"Technology & Innovation",
+{name:"Fabbrica Italiana dell'Innovazione",city:"Naples",category:"Startups & Accelerators",
  desc:"National innovation factory supporting deep-tech startups in blue economy, sustainable mobility and maritime technology through mentoring, prototyping labs and investment readiness programmes.",
  web:"fabbricainnovazione.it",founded:2021,
  contact:{name:"FII Management",title:"Director",email:"info@fabbricainnovazione.it",phone:"",li:"https://www.linkedin.com/company/fabbrica-italiana-dellinnovazione/"}},
@@ -988,12 +1046,12 @@ const ORGS = [
  web:"salonenautico.com",founded:1962,
  contact:{name:"Carla Demaria",title:"President, UCINA",email:"info@ucina.net",phone:"+39 010 5769811",li:"https://www.linkedin.com/in/carla-demaria-14bb241b/"}},
 
-{name:"Defcomm S.r.l.",city:"Genoa",category:"Technology & Innovation",
+{name:"Defcomm S.r.l.",city:"Genoa",category:"Startups & Accelerators",
  desc:"Maritime cybersecurity startup developing real-time intrusion detection and secure communication systems for commercial vessels, port infrastructure and offshore platforms.",
  web:"defcomm.it",founded:2020,
  contact:{name:"Defcomm Founders",title:"Co-founders",email:"info@defcomm.it",phone:"",li:""}},
 
-{name:"Dock Power",city:"Genoa",category:"Energy & Offshore",
+{name:"Dock Power",city:"Genoa",category:"Startups & Accelerators",
  desc:"Italian cleantech startup delivering shore-to-ship power (cold ironing) solutions, enabling vessels to switch off engines while berthed — cutting NOx and CO2 emissions in port areas.",
  web:"dockpower.it",founded:2021,
  contact:{name:"Dock Power Team",title:"CEO",email:"info@dockpower.it",phone:"",li:"https://www.linkedin.com/company/dock-power/"}},
@@ -1008,7 +1066,7 @@ const ORGS = [
  web:"adriashippingsummit.com",founded:2016,
  contact:{name:"Summit Secretariat",title:"Conference Director",email:"info@adriashippingsummit.com",phone:"",li:""}},
 
-{name:"Limenet S.r.l.",city:"Venice",category:"Technology & Innovation",
+{name:"Limenet S.r.l.",city:"Venice",category:"Startups & Accelerators",
  desc:"Deep-tech startup using electrochemical processes to capture CO₂ dissolved in seawater and restore ocean alkalinity — pioneering carbon dioxide removal at sea for climate reversal.",
  web:"limenet.it",founded:2021,
  contact:{name:"Luca Lena",title:"CEO & Co-founder",email:"info@limenet.it",phone:"",li:"https://www.linkedin.com/in/lucalena/"}},
@@ -1018,25 +1076,81 @@ const ORGS = [
  web:"bluetech.gr",founded:2019,
  contact:{name:"BLUE TECH Consortium",title:"Programme Coordinator",email:"info@bluetech.gr",phone:"",li:""}},
 
-{name:"Mirai Robotics",city:"Bari",category:"Technology & Innovation",
+{name:"Mirai Robotics",city:"Bari",category:"Startups & Accelerators",
  desc:"Italian startup developing AI-powered autonomous underwater vehicles (AUVs) for seabed inspection, offshore wind foundation monitoring and marine environmental sensing in Southern Italy.",
  web:"mirai-robotics.com",founded:2022,
  contact:{name:"Mirai Robotics Team",title:"CEO & Co-founder",email:"info@mirai-robotics.com",phone:"",li:"https://www.linkedin.com/company/mirai-robotics/"}},
 
-{name:"WSense",city:"Naples",category:"Technology & Innovation",
+{name:"WSense",city:"Naples",category:"Startups & Accelerators",
  desc:"Sapienza University spin-off developing underwater wireless sensor networks for real-time marine environment monitoring, port security, underwater infrastructure tracking and offshore asset management.",
  web:"wsense.it",founded:2017,
  contact:{name:"Chiara Petrioli",title:"CEO & Co-founder",email:"info@wsense.it",phone:"",li:"https://www.linkedin.com/in/chiarapetrioli/"}},
 
-{name:"SEAform – Marine Debris Technology",city:"Taranto",category:"Technology & Innovation",
+{name:"SEAform – Marine Debris Technology",city:"Taranto",category:"Startups & Accelerators",
  desc:"Italian startup developing autonomous surface vehicles (ASVs) for marine litter collection and real-time sea surface pollution monitoring in ports, coastal areas and offshore zones.",
  web:"seaform.it",founded:2020,
  contact:{name:"SEAform Team",title:"CEO",email:"info@seaform.it",phone:"",li:""}},
 
-{name:"Wearable Robotics",city:"Taranto",category:"Technology & Innovation",
+{name:"Wearable Robotics",city:"Taranto",category:"Startups & Accelerators",
  desc:"Pisa-born startup deploying exoskeleton suits for port and shipyard workers — reducing musculoskeletal injuries and boosting productivity in heavy cargo handling and ship repair environments.",
  web:"wearablerobotics.com",founded:2017,
  contact:{name:"Wearable Robotics Team",title:"CEO & Co-founder",email:"info@wearablerobotics.com",phone:"",li:"https://www.linkedin.com/company/wearable-robotics/"}},
+
+// ═══════════════════ VERIFIED NEW STARTUPS (research-confirmed) ═══════════════════
+{name:"BIC Genova – FILSE Business Incubator",city:"Genoa",category:"Startups & Accelerators",
+ desc:"Liguria's only publicly certified business incubator, housing 33+ companies including maritime and blue economy startups such as H2Boat and GerrisBoats. Provides spaces, funding guidance and links to the University of Genoa spin-off ecosystem.",
+ web:"filse.it",founded:2001,
+ contact:{name:"FILSE Management",title:"Director",email:"info@filse.it",phone:"+39 010 5484311",li:"https://www.linkedin.com/company/filse/"}},
+
+{name:"H2Boat",city:"Genoa",category:"Startups & Accelerators",
+ desc:"University of Genoa spin-off developing hydrogen fuel cell energy systems for small and leisure marine vessels. EU BlueInvest winner replacing fossil-fuel power plants with onboard H2 fuel cells and metal hydride storage systems.",
+ web:"h2boat.it",founded:2020,
+ contact:{name:"Thomas Lamberti",title:"President & Naval Engineer",email:"info@h2boat.it",phone:"",li:"https://www.linkedin.com/company/h2boat/"}},
+
+{name:"GerrisBoats",city:"Genoa",category:"Startups & Accelerators",
+ desc:"Genoa-based startup with a patented modular fully-electric hull platform for zero-emissions, zero-wake urban water taxis and smart maritime public transport. Design Innovation Award winner at the 61st Genova Boat Show.",
+ web:"gerrisboats.com",founded:2021,
+ contact:{name:"Massimo Verme",title:"Co-founder",email:"info@gerrisboats.com",phone:"",li:"https://www.linkedin.com/in/massimo-verme-a3757023/"}},
+
+{name:"OceanHis",city:"Genoa",category:"Startups & Accelerators",
+ desc:"Blue Box — a plug-and-play miniaturised IoT lab installable on any vessel to collect and transmit real-time georeferenced oceanographic and marine health data. Selected winner of the Genova Blue District Call for Innovation and incubated at I3P.",
+ web:"oceanhis.com",founded:2020,
+ contact:{name:"Francesca Inches",title:"Co-founder & CEO",email:"",phone:"",li:"https://www.linkedin.com/company/oceanhis/"}},
+
+{name:"FlySight",city:"Livorno",category:"Startups & Accelerators",
+ desc:"Livorno-born geospatial C4ISR software company with the OPENSIGHT platform providing AI-fused AR pilot assistance for ship berthing, port surveillance and ship-to-shore connectivity. Key partner in the EU 5GMASS project at the Port of Livorno — Italy's first 5G autonomous navigation testbed.",
+ web:"flysight.it",founded:2020,
+ contact:{name:"Andrea Masini",title:"CEO",email:"",phone:"",li:"https://www.linkedin.com/in/andrea-masini-0514633/"}},
+
+{name:"Northern Light Composites",city:"Trieste",category:"Startups & Accelerators",
+ desc:"Monfalcone startup that invented rComposite — the world's first thermoplastic natural-fibre recyclable composite for production boatbuilding (~90% recyclable per vessel). Their Ecoracer30, world's first fully recyclable production sailboat, won the Design Innovation Award at the 61st Genoa Boat Show.",
+ web:"northernlightcomposites.com",founded:2019,
+ contact:{name:"Fabio Bignolini",title:"Co-founder & CEO",email:"",phone:"",li:"https://www.linkedin.com/in/fabiobignolini/"}},
+
+{name:"CNT Technologies",city:"Ancona",category:"Startups & Accelerators",
+ desc:"Ancona robotics and software company delivering maritime and port digital twins, including Italy's first operational port digital twin at the Port of Ravenna. Participates in EU Interreg UNDERSEC and integrates multi-source port infrastructure data in real time.",
+ web:"cnt-technologies.net",founded:2014,
+ contact:{name:"Saimon Conti",title:"Managing Director",email:"",phone:"",li:"https://www.linkedin.com/in/saimon-conti-46097691/"}},
+
+{name:"Italdron",city:"Ravenna",category:"Startups & Accelerators",
+ desc:"Italy's largest ENAC-certified professional UAV manufacturer. Drones deployed for port perimeter surveillance, offshore platform inspection, coastal environmental monitoring and maritime search-and-rescue. Serves Enel, major port authorities and the Italian Coast Guard.",
+ web:"italdron.com",founded:2008,
+ contact:{name:"Tommaso Solfrini",title:"Co-founder & CEO",email:"",phone:"",li:"https://www.linkedin.com/company/italdron-s.r.l./"}},
+
+{name:"Innovation Factory – AREA Science Park",city:"Trieste",category:"Startups & Accelerators",
+ desc:"Certified incubator inside Italy's national AREA Science Park, active since 2008 with a portfolio of 59+ startups in maritime tech, life sciences and deep tech. Provides equity-free support, co-working infrastructure and access to national and international investors.",
+ web:"if.areasciencepark.it",founded:2008,
+ contact:{name:"Fabrizio Rovatti",title:"Managing Director",email:"",phone:"+39 040 3755111",li:"https://www.linkedin.com/in/fabrizio-rovatti-5396a35/"}},
+
+{name:"ReLOG3P",city:"Genoa",category:"Startups & Accelerators",
+ desc:"Genoa startup with the ReACT platform — a one-stop-shop for end-to-end sustainable global logistics and supply chains, aligned with UN SDGs and EU Green Deal. Applies to port and maritime freight flows with active participation in EU smart-logistics pilots.",
+ web:"relog3p.com",founded:2021,
+ contact:{name:"Stefano Negrini",title:"Co-founder",email:"info@relog3p.com",phone:"",li:"https://www.linkedin.com/company/relog3p/"}},
+
+{name:"DIH InnovaMare",city:"Venice",category:"Startups & Accelerators",
+ desc:"EU Interreg Italy-Croatia Digital Innovation Hub building a sustainable blue economy innovation ecosystem across the Adriatic. Coordinated by Unioncamere del Veneto, covers underwater robotics pilots, technology transfer and startup support across eight partners.",
+ web:"italy-croatia.eu/web/dihinnovamare",founded:2024,
+ contact:{name:"Unioncamere del Veneto",title:"Lead Partner",email:"",phone:"+39 041 0999311",li:""}},
 
 ]; // end ORGS
 
@@ -1049,7 +1163,7 @@ const PEOPLE = [
   {name:"Roberto Cingolani",title:"CEO",org:"Leonardo S.p.A.",city:"Ancona",cat:"Technology & Innovation",email:"",phone:"+39 06 32471",li:"https://www.linkedin.com/in/roberto-cingolani/"},
   {name:"Gian Luca Gregori",title:"Rector",org:"UNIVPM",city:"Ancona",cat:"Research & Academia",email:"rettore@univpm.it",phone:"+39 071 2201111",li:"https://www.linkedin.com/in/gian-luca-gregori-0a6b3b29/"},
   {name:"Francesco Mastro",title:"President",org:"AdSP Mare Adriatico Meridionale",city:"Bari",cat:"Port Authority",email:"presidente@adspmam.it",phone:"+39 080 5788504",li:""},
-  {name:"Stefano Molino",title:"Head of Accelerators Fund",org:"FAROS / CDP Venture Capital",city:"Bari",cat:"Technology & Innovation",email:"faros@cdpventurecapital.it",phone:"+39 06 4221111",li:"https://www.linkedin.com/in/stefano-molino-cdp/"},
+  {name:"Stefano Molino",title:"Head of Accelerators Fund",org:"FAROS / CDP Venture Capital",city:"Bari",cat:"Startups & Accelerators",email:"faros@cdpventurecapital.it",phone:"+39 06 4221111",li:"https://www.linkedin.com/in/stefano-molino-cdp/"},
   {name:"Agostino Scornajenchi",title:"CEO & General Director",org:"CDP Venture Capital SGR",city:"Bari",cat:"Finance & Investment",email:"info@cdpventurecapital.it",phone:"+39 06 4221001",li:"https://www.linkedin.com/in/agostino-scornajenchi-7a26521/"},
   {name:"Bernardo Mattarella",title:"CEO",org:"Invitalia S.p.A.",city:"Bari",cat:"Finance & Investment",email:"info@invitalia.it",phone:"+39 06 421601",li:"https://www.linkedin.com/in/bernardo-mattarella/"},
   {name:"Mario Paolo Mega",title:"Head of Technology & Innovation",org:"AdSP Mare Adriatico Meridionale",city:"Bari",cat:"Port Authority",email:"m.mega@adspmam.it",phone:"+39 080 5788566",li:""},
@@ -1062,7 +1176,7 @@ const PEOPLE = [
   {name:"Marco Ghiglione",title:"CEO",org:"T. Mariotti / GIN Holding",city:"Genoa",cat:"Shipbuilding & Repair",email:"info@mariottiyard.it",phone:"+39 010 24081",li:"https://www.linkedin.com/in/marco-ghiglione-14627b4/"},
   {name:"Paola Girdinio",title:"President",org:"START 4.0",city:"Genoa",cat:"Technology & Innovation",email:"info@start4-0.it",phone:"+39 010 3532813",li:"https://www.linkedin.com/in/paola-girdinio-47a10a11/"},
   {name:"Timothy Cosulich",title:"CEO – Marine Fuels",org:"Fratelli Cosulich",city:"Genoa",cat:"Maritime Services",email:"",phone:"+39 010 5462411",li:"https://www.linkedin.com/in/timothy-cosulich-b07a671/"},
-  {name:"Silvia Pedemonte",title:"Community Manager",org:"Genova Blue District",city:"Genoa",cat:"Technology & Innovation",email:"bluedistrict@job-centre-srl.it",phone:"+39 010 648 0508",li:"https://www.linkedin.com/in/silvia-pedemonte-15b87356/"},
+  {name:"Silvia Pedemonte",title:"Community Manager",org:"Genova Blue District",city:"Genoa",cat:"Startups & Accelerators",email:"bluedistrict@job-centre-srl.it",phone:"+39 010 648 0508",li:"https://www.linkedin.com/in/silvia-pedemonte-15b87356/"},
   {name:"Massimo Debenedetti",title:"CEO",org:"CETENA S.p.A.",city:"Genoa",cat:"Technology & Innovation",email:"info@cetena.it",phone:"+39 010 5996700",li:"https://www.linkedin.com/in/massimodebenedetti/"},
   {name:"Vincenzo Poerio",title:"Joint CEO",org:"Tankoa Yachts",city:"Genoa",cat:"Shipbuilding & Repair",email:"info@tankoa.com",phone:"+39 010 5421900",li:"https://www.linkedin.com/in/vincenzo-poerio-62334129a/"},
   {name:"Simona Brassesco",title:"Co-CEO",org:"Gruppo Spinelli",city:"Genoa",cat:"Logistics & Freight",email:"",phone:"+39 010 6041",li:"https://www.linkedin.com/in/simonabrassesco/"},
@@ -1078,7 +1192,7 @@ const PEOPLE = [
   {name:"Emanuele Grimaldi",title:"Managing Director",org:"Grimaldi Group",city:"Naples",cat:"Shipping & Ferries",email:"info@grimaldi.napoli.it",phone:"+39 081 4961111",li:""},
   {name:"Gianluca Grimaldi",title:"Chairman",org:"Grimaldi Group",city:"Naples",cat:"Shipping & Ferries",email:"info@grimaldi.napoli.it",phone:"+39 081 4961111",li:""},
   {name:"Massimo Deandreis",title:"Director General",org:"SRM – Studi e Ricerche per il Mezzogiorno",city:"Naples",cat:"Research & Academia",email:"info@sr-m.it",phone:"+39 081 7913111",li:"https://www.linkedin.com/in/massimo-deandreis/"},
-  {name:"Alessandro Recchi",title:"CEO & Co-founder",org:"Herobots S.r.l.",city:"Naples",cat:"Technology & Innovation",email:"info@herobots.eu",phone:"",li:""},
+  {name:"Alessandro Recchi",title:"CEO & Co-founder",org:"Herobots S.r.l.",city:"Naples",cat:"Startups & Accelerators",email:"info@herobots.eu",phone:"",li:""},
   {name:"Aniello Coppola",title:"President",org:"CAMED – Cantieri del Mediterraneo",city:"Naples",cat:"Shipbuilding & Repair",email:"info@camedspa.it",phone:"+39 081 2285311",li:""},
   {name:"Massimo Minieri",title:"CEO",org:"Stazione Marittima Napoli",city:"Naples",cat:"Cruise & Passenger",email:"info@stazionemarittima.it",phone:"+39 081 5513961",li:""},
   {name:"Valeria Fascione",title:"Regional Assessor for Innovation",org:"Regione Campania",city:"Naples",cat:"Technology & Innovation",email:"v.fascione@regione.campania.it",phone:"+39 081 7967211",li:"https://www.linkedin.com/in/valeriafascione/"},
