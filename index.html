@@ -153,12 +153,46 @@
     .fflag{display:inline-flex;gap:2px;margin-bottom:14px}
     .fflag span{width:8px;height:24px;border-radius:1px}
 
+    /* WHY IT MATTERS */
+    .wim{background:#fff;border-top:4px solid var(--navy);padding:64px 24px}
+    .wim-inner{max-width:1440px;margin:0 auto}
+    .wim-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(13,27,62,.07);border:1px solid rgba(13,27,62,.14);color:var(--navy);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:16px}
+    .wim-hdr{margin-bottom:36px}
+    .wim-title{font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,38px);font-weight:800;color:var(--navy);margin-bottom:8px}
+    .wim-sub{font-size:15px;color:var(--gray-500);max-width:600px;line-height:1.7}
+    .wim-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .wim-col{border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:14px}
+    .wim-col-eco{background:linear-gradient(135deg,#eef4ff 0%,#dbeafe 100%);border:1px solid #bfdbfe}
+    .wim-col-300{background:linear-gradient(135deg,#0d1b3e 0%,#1e3a6e 100%);border:1px solid rgba(255,255,255,.08)}
+    .wim-col-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px}
+    .wim-col-eco .wim-col-label{color:var(--blue)}
+    .wim-col-300 .wim-col-label{color:rgba(255,255,255,.5)}
+    .wim-col-headline{font-size:18px;font-weight:800;line-height:1.35}
+    .wim-col-eco .wim-col-headline{color:var(--navy)}
+    .wim-col-300 .wim-col-headline{color:#fff}
+    .wim-points{display:flex;flex-direction:column;gap:10px;margin-top:2px}
+    .wim-pt{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;line-height:1.55}
+    .wim-col-eco .wim-pt{color:var(--gray-700)}
+    .wim-col-300 .wim-pt{color:rgba(255,255,255,.8)}
+    .wim-pt-icon{font-size:15px;flex-shrink:0;margin-top:1px}
+    .wim-stat{margin-top:auto;padding-top:16px;border-top:1px solid}
+    .wim-col-eco .wim-stat{border-color:rgba(13,27,62,.12)}
+    .wim-col-300 .wim-stat{border-color:rgba(255,255,255,.15)}
+    .wim-stat-n{font-size:26px;font-weight:800}
+    .wim-col-eco .wim-stat-n{color:var(--navy)}
+    .wim-col-300 .wim-stat-n{color:#93c5fd}
+    .wim-stat-l{font-size:12px;font-weight:500;margin-top:2px}
+    .wim-col-eco .wim-stat-l{color:var(--gray-500)}
+    .wim-col-300 .wim-stat-l{color:rgba(255,255,255,.5)}
+
     @media(max-width:768px){
       .hero{padding:48px 16px 56px}
       .filters-section{padding:14px 16px}
       .main{padding:20px 16px 40px}
       .hdr-badge{display:none}
       .tabs-bar{padding:0 16px}
+      .wim{padding:40px 16px}
+      .wim-cols{grid-template-columns:1fr}
     }
     .hidden{display:none!important}
   </style>
@@ -189,6 +223,46 @@
   </div>
   <div class="hero-waves"></div>
   <div class="italy-stripe"></div>
+</section>
+
+<section class="wim">
+  <div class="wim-inner">
+    <div class="wim-eyebrow">🌊 Strategic Context</div>
+    <div class="wim-hdr">
+      <h2 class="wim-title">Why Italy Matters</h2>
+      <p class="wim-sub">Italy is Europe's second-largest maritime nation — and one of its most underconnected. This map is our foundation for changing that.</p>
+    </div>
+    <div class="wim-cols">
+      <div class="wim-col wim-col-eco">
+        <div class="wim-col-label">For the Ecosystem</div>
+        <div class="wim-col-headline">Visibility across Italy's full maritime value chain</div>
+        <div class="wim-points">
+          <div class="wim-pt"><span class="wim-pt-icon">🔗</span><span>Connect with the right counterparts across 9 port cities — port authorities, investors, startups, corporates and researchers — all in one place.</span></div>
+          <div class="wim-pt"><span class="wim-pt-icon">🌍</span><span>Gain international exposure through 300 Maritime's global network of 2,000+ maritime leaders across 60+ countries.</span></div>
+          <div class="wim-pt"><span class="wim-pt-icon">🚀</span><span>Startups find investors and pilots; corporates find innovation partners; port authorities find technology suppliers — faster than ever before.</span></div>
+          <div class="wim-pt"><span class="wim-pt-icon">🏛</span><span>Participate in a curated programme bridging Italy's fragmented maritime clusters into one coherent, investable ecosystem.</span></div>
+        </div>
+        <div class="wim-stat">
+          <div class="wim-stat-n">€46B</div>
+          <div class="wim-stat-l">Italy's annual maritime economy contribution to GDP</div>
+        </div>
+      </div>
+      <div class="wim-col wim-col-300">
+        <div class="wim-col-label">For 300 Maritime</div>
+        <div class="wim-col-headline">Italy is where the next chapter of European maritime innovation is written</div>
+        <div class="wim-points">
+          <div class="wim-pt"><span class="wim-pt-icon">⚡</span><span>Three megatrends converge here: decarbonisation (Taranto offshore wind, SAF biorefineries), digitalisation (START 4.0, Blue District), and a €15B+ port modernisation wave.</span></div>
+          <div class="wim-pt"><span class="wim-pt-icon">🏗</span><span>Italy hosts Fincantieri, MSC, Saipem, RINA and Wärtsilä — the entire maritime technology supply chain under one flag.</span></div>
+          <div class="wim-pt"><span class="wim-pt-icon">💡</span><span>Untapped startup density from Genova Blue District to Taranto's FAROS accelerator — deal flow that global VCs haven't yet mapped.</span></div>
+          <div class="wim-pt"><span class="wim-pt-icon">🤝</span><span>Italy's PNRR Blue Economy funds and EU maritime presidency agenda create a once-in-a-decade window for entrepreneurs and investors alike.</span></div>
+        </div>
+        <div class="wim-stat">
+          <div class="wim-stat-n">€15B+</div>
+          <div class="wim-stat-l">Committed port modernisation investment across Italy's 9 cities</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <div class="tabs-bar">
@@ -861,6 +935,108 @@ const ORGS = [
  desc:"High-speed catamaran ferry service connecting Venice with Poreč and Rovinj in Croatia. Popular with tourists exploring the northern Adriatic coastal destinations.",
  web:"venezialines.com",founded:2003,
  contact:{name:"Venice Lines Operations",title:"CEO",email:"info@venezialines.com",phone:"+39 041 5422000",li:""}},
+
+
+// ═══════════════════ NEW ORGANISATIONS ═══════════════════
+{name:"YoungShip Italy",city:"Genoa",category:"Maritime Services",
+ desc:"National chapter of YoungShip International — professional networking and development for Italy's next generation of maritime leaders. Active chapters across North and South Italy.",
+ web:"youngship.org",founded:2007,
+ contact:{name:"Riccardo Fuochi",title:"President, YoungShip Italy",email:"italy@youngship.org",phone:"",li:"https://www.linkedin.com/in/riccardo-fuochi/"}},
+
+{name:"YoungShip Italy – North VP",city:"Genoa",category:"Maritime Services",
+ desc:"Northern Italy branch of YoungShip Italy, covering Liguria, Lombardy and Triveneto. Drives youth maritime networking, speaker events and international connections across the North.",
+ web:"youngship.org",founded:2015,
+ contact:{name:"North Branch Coordinator",title:"VP North, YoungShip Italy",email:"italy@youngship.org",phone:"",li:"https://www.linkedin.com/company/youngship-international/"}},
+
+{name:"YoungShip Italy – South VP",city:"Naples",category:"Maritime Services",
+ desc:"Southern Italy chapter of YoungShip Italy, based in Naples. Engages young maritime professionals across Campania, Puglia, Calabria and Sicily.",
+ web:"youngship.org",founded:2015,
+ contact:{name:"South Branch Coordinator",title:"VP South, YoungShip Italy",email:"italy@youngship.org",phone:"",li:"https://www.linkedin.com/company/youngship-international/"}},
+
+{name:"ShipCon – YoungShip International",city:"Genoa",category:"Maritime Services",
+ desc:"Global maritime youth conference series run by YoungShip International chapters. Italy editions connect global maritime talent with Italian shipping companies and maritime startups.",
+ web:"youngship.org",founded:2010,
+ contact:{name:"YoungShip Secretariat",title:"Secretary General, YoungShip International",email:"office@youngship.org",phone:"",li:"https://www.linkedin.com/company/youngship-international/"}},
+
+{name:"Federazione del Mare",city:"Naples",category:"Maritime Services",
+ desc:"Umbrella federation representing Italy's 8 major maritime associations — shipowners, ports, shipbuilders, agents and maritime law bodies. The voice of the sea economy at government and EU level.",
+ web:"federazionedelmare.it",founded:1994,
+ contact:{name:"Giorgio Risso",title:"President",email:"info@federazionedelmare.it",phone:"+39 06 3236741",li:"https://www.linkedin.com/in/giorgio-risso-4a15b4a8/"}},
+
+{name:"Cluster BIG – Blue Italian Growth",city:"Naples",category:"Research & Academia",
+ desc:"Italy's national maritime technology cluster under MIMIT. Connects SMEs, large corporates and research centres developing technology for sea systems, port infrastructure and blue economy services.",
+ web:"blueitaliancluster.it",founded:2015,
+ contact:{name:"Salvatore Sarno",title:"President",email:"info@blueitaliancluster.it",phone:"+39 081 7913511",li:"https://www.linkedin.com/in/salvatore-sarno-b94aa51a/"}},
+
+{name:"Blue Forum Italia",city:"Naples",category:"Maritime Services",
+ desc:"Italy's largest blue economy policy summit. Annual event bringing together institutions, maritime companies and innovators for national maritime policy dialogue and networking.",
+ web:"blueforum.net",founded:2017,
+ contact:{name:"Blue Forum Secretariat",title:"Secretary General",email:"info@blueforum.net",phone:"+39 06 45548250",li:""}},
+
+{name:"Fabbrica Italiana dell'Innovazione",city:"Naples",category:"Technology & Innovation",
+ desc:"National innovation factory supporting deep-tech startups in blue economy, sustainable mobility and maritime technology through mentoring, prototyping labs and investment readiness programmes.",
+ web:"fabbricainnovazione.it",founded:2021,
+ contact:{name:"FII Management",title:"Director",email:"info@fabbricainnovazione.it",phone:"",li:"https://www.linkedin.com/company/fabbrica-italiana-dellinnovazione/"}},
+
+{name:"Seafuture – Naval & Maritime Innovation",city:"Genoa",category:"Maritime Services",
+ desc:"International exhibition and forum held in La Spezia dedicated to naval, maritime and underwater technology innovation. Connects Defence, Coast Guard and maritime industry buyers with innovators.",
+ web:"seafuture.it",founded:2013,
+ contact:{name:"Seafuture Secretariat",title:"Event Director",email:"info@seafuture.it",phone:"+39 0187 724411",li:""}},
+
+{name:"Genoa International Boat Show",city:"Genoa",category:"Maritime Services",
+ desc:"Europe's largest in-water boat show — the Salone Nautico Internazionale di Genova. Annual event showcasing 1,000+ boats to 200,000+ visitors; the heart of Italy's €4B nautical industry.",
+ web:"salonenautico.com",founded:1962,
+ contact:{name:"Carla Demaria",title:"President, UCINA",email:"info@ucina.net",phone:"+39 010 5769811",li:"https://www.linkedin.com/in/carla-demaria-14bb241b/"}},
+
+{name:"Defcomm S.r.l.",city:"Genoa",category:"Technology & Innovation",
+ desc:"Maritime cybersecurity startup developing real-time intrusion detection and secure communication systems for commercial vessels, port infrastructure and offshore platforms.",
+ web:"defcomm.it",founded:2020,
+ contact:{name:"Defcomm Founders",title:"Co-founders",email:"info@defcomm.it",phone:"",li:""}},
+
+{name:"Dock Power",city:"Genoa",category:"Energy & Offshore",
+ desc:"Italian cleantech startup delivering shore-to-ship power (cold ironing) solutions, enabling vessels to switch off engines while berthed — cutting NOx and CO2 emissions in port areas.",
+ web:"dockpower.it",founded:2021,
+ contact:{name:"Dock Power Team",title:"CEO",email:"info@dockpower.it",phone:"",li:"https://www.linkedin.com/company/dock-power/"}},
+
+{name:"Maritime Technology Cluster FVG (mareFVG)",city:"Trieste",category:"Technology & Innovation",
+ desc:"Friuli Venezia Giulia regional maritime technology cluster. Connects Trieste, Monfalcone and Udine maritime-industrial SMEs with Fincantieri, Wärtsilä and regional research institutions on shared R&D projects.",
+ web:"marefvg.it",founded:2016,
+ contact:{name:"mareFVG Secretariat",title:"Cluster Manager",email:"info@marefvg.it",phone:"+39 040 3193300",li:"https://www.linkedin.com/company/marefvg/"}},
+
+{name:"Adria Shipping Summit",city:"Venice",category:"Maritime Services",
+ desc:"Premier Adriatic shipping and maritime business conference held in Venice. Connects shipowners, port authorities, cargo owners, financiers and maritime service providers across the Adriatic basin.",
+ web:"adriashippingsummit.com",founded:2016,
+ contact:{name:"Summit Secretariat",title:"Conference Director",email:"info@adriashippingsummit.com",phone:"",li:""}},
+
+{name:"Limenet S.r.l.",city:"Venice",category:"Technology & Innovation",
+ desc:"Deep-tech startup using electrochemical processes to capture CO₂ dissolved in seawater and restore ocean alkalinity — pioneering carbon dioxide removal at sea for climate reversal.",
+ web:"limenet.it",founded:2021,
+ contact:{name:"Luca Lena",title:"CEO & Co-founder",email:"info@limenet.it",phone:"",li:"https://www.linkedin.com/in/lucalena/"}},
+
+{name:"BLUE TECH – Interreg Greece-Italy",city:"Bari",category:"Technology & Innovation",
+ desc:"EU Interreg cross-border programme developing blue technology innovation clusters across Greece and Southern Italy. Supports maritime startups and SMEs in the Ionian-Adriatic region.",
+ web:"bluetech.gr",founded:2019,
+ contact:{name:"BLUE TECH Consortium",title:"Programme Coordinator",email:"info@bluetech.gr",phone:"",li:""}},
+
+{name:"Mirai Robotics",city:"Bari",category:"Technology & Innovation",
+ desc:"Italian startup developing AI-powered autonomous underwater vehicles (AUVs) for seabed inspection, offshore wind foundation monitoring and marine environmental sensing in Southern Italy.",
+ web:"mirai-robotics.com",founded:2022,
+ contact:{name:"Mirai Robotics Team",title:"CEO & Co-founder",email:"info@mirai-robotics.com",phone:"",li:"https://www.linkedin.com/company/mirai-robotics/"}},
+
+{name:"WSense",city:"Naples",category:"Technology & Innovation",
+ desc:"Sapienza University spin-off developing underwater wireless sensor networks for real-time marine environment monitoring, port security, underwater infrastructure tracking and offshore asset management.",
+ web:"wsense.it",founded:2017,
+ contact:{name:"Chiara Petrioli",title:"CEO & Co-founder",email:"info@wsense.it",phone:"",li:"https://www.linkedin.com/in/chiarapetrioli/"}},
+
+{name:"SEAform – Marine Debris Technology",city:"Taranto",category:"Technology & Innovation",
+ desc:"Italian startup developing autonomous surface vehicles (ASVs) for marine litter collection and real-time sea surface pollution monitoring in ports, coastal areas and offshore zones.",
+ web:"seaform.it",founded:2020,
+ contact:{name:"SEAform Team",title:"CEO",email:"info@seaform.it",phone:"",li:""}},
+
+{name:"Wearable Robotics",city:"Taranto",category:"Technology & Innovation",
+ desc:"Pisa-born startup deploying exoskeleton suits for port and shipyard workers — reducing musculoskeletal injuries and boosting productivity in heavy cargo handling and ship repair environments.",
+ web:"wearablerobotics.com",founded:2017,
+ contact:{name:"Wearable Robotics Team",title:"CEO & Co-founder",email:"info@wearablerobotics.com",phone:"",li:"https://www.linkedin.com/company/wearable-robotics/"}},
 
 ]; // end ORGS
 
